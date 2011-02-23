@@ -7,6 +7,7 @@ import static com.pyxis.matchers.core.CoreMatchers.being;
 import static org.hamcrest.Matchers.containsString;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.xpath;
 
 public class CartPage extends Page {
 
@@ -48,7 +49,7 @@ public class CartPage extends Page {
     }
 
     public void checkout() {
-        browser.element(cssSelector("#checkout a")).click();
+        browser.element(xpath("//div[@id='checkout']/a")).click();
     }
 }
 
