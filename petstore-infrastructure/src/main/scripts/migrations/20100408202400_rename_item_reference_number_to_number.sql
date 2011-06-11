@@ -1,1 +1,0 @@
-alter table items change column reference_number number varchar(8) not null unique;

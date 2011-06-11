@@ -5,22 +5,28 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.pyxis</groupId>
     <artifactId>petstore</artifactId>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
     <version>0.9-SNAPSHOT</version>
     <name>petstore</name>
 
-    <modules>
-        <module>petstore-domain</module>
-        <module>petstore-infrastructure</module>
-        <module>petstore-app</module>
-        <module>petstore-system-tests</module>
-    </modules>
+    <properties>
+		<!-- maven-resources-plugin does not seen to interpolate project.baseUri, help it out -->
+        <projectBaseUri>${project.baseUri}</projectBaseUri>
+        <context.path>/petstore</context.path>
+        <!-- Log files go to parent/logs -->
+        <log.dir>${project.basedir}/../logs</log.dir>
+    </properties>
 
     <repositories>
+        <!--<repository>-->
+        <!--<id>pyxis</id>-->
+        <!--<name>Pyxis Nexus Maven Repository</name>-->
+        <!--<url>https://www.pyxis-tech.ca/nexus/content/groups/public</url>-->
+        <!--</repository>-->
         <repository>
-            <id>pyxis</id>
-            <name>Pyxis Nexus Maven Repository</name>
-            <url>https://www.pyxis-tech.ca/nexus/content/groups/public</url>
+            <id>3levers</id>
+            <name>3levers maven2</name>
+            <url>http://3levers.googlecode.com/svn/maven2/snapshots</url>
         </repository>
         <repository>
             <id>c5-public-repository</id>
@@ -37,56 +43,12 @@
     </pluginRepositories>
 
     <dependencies>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <version>1.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.pyxis.matchers</groupId>
-            <artifactId>all-matchers</artifactId>
-            <version>1.4-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Declare junit after hamcrest because junit includes org.hamcrest.Matcher
-           version 1.1 -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jmock</groupId>
-            <artifactId>jmock</artifactId>
-            <version>2.5.1</version>
-            <scope>test</scope>
-            <exclusions>
-                <!-- exclude older versions of hamcrest -->
-                <exclusion>
-                    <groupId>org.hamcrest</groupId>
-                    <artifactId>hamcrest-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.hamcrest</groupId>
-                    <artifactId>hamcrest-library</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.jmock</groupId>
-            <artifactId>jmock-junit4</artifactId>
-            <version>2.5.1</version>
-            <scope>test</scope>
-            <exclusions>
-                <!-- exclude junit dep which depends on hamcrest 1.1 -->
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit-dep</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.pyxis.matchers</groupId>-->
+        <!--<artifactId>all-matchers</artifactId>-->
+        <!--<version>1.4-SNAPSHOT</version>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -128,6 +90,114 @@
             <version>1.5.10</version>
             <scope>runtime</scope>
         </dependency>
+		<dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.3levers.cssselectors</groupId>
+            <artifactId>cssselectors</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>sitemesh</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.2.132</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.carbonfive.db-support</groupId>
+            <artifactId>db-migration</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- carbon 5 requires commons-collections -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -147,7 +217,7 @@
             <dependency>
                 <groupId>com.3levers.cssselectors</groupId>
                 <artifactId>cssselectors</artifactId>
-                <version>1.1</version>
+                <version>1.0-SNAPSHOT</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -271,20 +341,27 @@
                 <scope>runtime</scope>
             </dependency>
             <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.2.132</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>1.4</version>
             </dependency>
-            <dependency>
-                <groupId>com.pyxis.time</groupId>
-                <artifactId>time</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>com.pyxis.time</groupId>-->
+            <!--<artifactId>time</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
+			<!-- Make sure Maven2 generates an absolute path, since Hudson does not support Maven3 yet -->
+	        <scriptSourceDirectory>${project.basedir}/src/main/scripts</scriptSourceDirectory>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -301,25 +378,87 @@
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
+				<plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-jar-plugin</artifactId>
+	                <configuration>
+	                    <classifier>jar</classifier>
+	                </configuration>
+	                <executions>
+	                    <execution>
+	                        <goals>
+	                            <goal>jar</goal>
+	                        </goals>
+	                    </execution>
+	                </executions>
+	            </plugin>
+	            <plugin>
+	                <groupId>org.mortbay.jetty</groupId>
+	                <artifactId>maven-jetty-plugin</artifactId>
+	                <version>6.1.22</version>
+	                <configuration>
+	                    <contextPath>${context.path}</contextPath>
+	                    <scanIntervalSeconds>10</scanIntervalSeconds>
+	                    <stopKey>foo</stopKey>
+	                    <stopPort>9999</stopPort>
+	                </configuration>
+	            </plugin>
+	            <plugin>
+	                <groupId>com.carbonfive.db-support</groupId>
+	                <artifactId>db-migration-maven-plugin</artifactId>
+	                <version>0.9.9-m2</version>
+	                <configuration>
+	                    <url>${jdbc.url}</url>
+	                    <username>${jdbc.username}</username>
+	                    <password>${jdbc.password}</password>
+	                    <migrationsPath>${project.build.scriptSourceDirectory}/migrations</migrationsPath>
+	                </configuration>
+	                <dependencies>
+	                    <dependency>
+	                        <groupId>com.h2database</groupId>
+	                        <artifactId>h2</artifactId>
+	                        <version>1.2.132</version>
+	                    </dependency>
+	                </dependencies>
+	            </plugin>
+	            <plugin>
+	                <groupId>org.codehaus.mojo</groupId>
+	                <artifactId>sql-maven-plugin</artifactId>
+	                <version>1.4</version>
+	                <dependencies>
+	                    <dependency>
+	                        <groupId>com.h2database</groupId>
+	                        <artifactId>h2</artifactId>
+	                        <version>1.2.132</version>
+	                    </dependency>
+	                </dependencies>
+	                <configuration>
+	                    <driver>org.h2.Driver</driver>
+	                    <url>${jdbc.url}</url>
+	                    <username>${jdbc.username}</username>
+	                    <password>${jdbc.password}</password>
+	                    <fileset>
+	                        <basedir>${project.build.scriptSourceDirectory}/seeds</basedir>
+	                        <includes>
+	                            <include>*.sql</include>
+	                        </includes>
+	                    </fileset>
+	                </configuration>
+	            </plugin>
             </plugins>
-        </pluginManagement>
+			<resources>
+	            <resource>
+	                <directory>src/main/resources</directory>
+	                <filtering>true</filtering>
+	            </resource>
+	        </resources>
+	        <testResources>
+	            <testResource>
+	                <directory>src/test/resources</directory>
+	                <filtering>true</filtering>
+	            </testResource>
+	        </testResources>
     </build>
-
-    <properties>
-        <context.path>/petstore</context.path>
-        <!-- Log files go to parent/logs -->
-        <log.dir>${project.basedir}/../logs</log.dir>
-        <test.server.host>localhost</test.server.host>
-        <test.server.port>8180</test.server.port>
-        <test.log.file>test.log</test.log.file>
-        <test.jdbc.driverClassName>com.mysql.jdbc.Driver</test.jdbc.driverClassName>
-        <test.jdbc.url>jdbc:mysql://localhost:3306/petstore_test</test.jdbc.url>
-        <test.jdbc.username>petstore</test.jdbc.username>
-        <test.jdbc.password>petstore</test.jdbc.password>
-        <test.hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</test.hibernate.dialect>
-        <test.timeServer.host>localhost</test.timeServer.host>
-        <test.timeServer.port>10013</test.timeServer.port>
-    </properties>
 
     <profiles>
         <profile>
@@ -334,11 +473,11 @@
             <properties>
                 <server.port>8080</server.port>
                 <log.file>development.log</log.file>
-                <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:mysql://localhost:3306/petstore_dev</jdbc.url>
-                <jdbc.username>petstore</jdbc.username>
-                <jdbc.password>petstore</jdbc.password>
-                <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+                <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+                <jdbc.url>jdbc:h2:file:petstore;DB_CLOSE_ON_EXIT=FALSE</jdbc.url>
+                <jdbc.username>sa</jdbc.username>
+                <jdbc.password></jdbc.password>
+                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
                 <timeServer.host>localhost</timeServer.host>
                 <timeServer.port>10000</timeServer.port>
             </properties>
@@ -348,11 +487,11 @@
             <properties>
                 <server.port>8280</server.port>
                 <log.file>production.log</log.file>
-                <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:mysql://localhost:3306/petstore</jdbc.url>
-                <jdbc.username>petstore</jdbc.username>
-                <jdbc.password>petstore</jdbc.password>
-                <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+                <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+                <jdbc.url>jdbc:h2:file:petstore-prod;DB_CLOSE_ON_EXIT=FALSE</jdbc.url>
+                <jdbc.username>sa</jdbc.username>
+                <jdbc.password></jdbc.password>
+                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
                 <timeServer.host>time.nist.gov</timeServer.host>
                 <timeServer.port>13</timeServer.port>
             </properties>
@@ -364,17 +503,4 @@
             </activation>
         </profile>
     </profiles>
-    <distributionManagement>
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>${pyxis.distributionManagement.repository.id}</id>
-            <url>${pyxis.distributionManagement.repository.url}</url>
-        </repository>
-        <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>${pyxis.snapshot.distributionManagement.repository.id}</id>
-            <url>${pyxis.snapshot.distributionManagement.repository.url}</url>
-        </snapshotRepository>
-        <downloadUrl>${pyxis.distributionManagement.downloadUrl}</downloadUrl>
-    </distributionManagement>
 </project>
