@@ -1,5 +1,28 @@
 This project borrows mathibodeau's petstore project and use it as a base for cuke4duke showcase.
 
+How to run this demo
+~~~~~~~~~~~~~~~~~~~~
+
+Prepare the db
+==============
+
+* run `mvn db-migration:migrate -Denv=dev` to create the db with schemas.
+* run `mvn sql:execute` to insert some test data.
+
+Launch the app
+==============
+
+* run `mvn jetty:run` to start the web server, then you can see the app running at `http://localhost:8080/petstore`.
+
+Run cucumber tests
+==================
+
+* run `mvn integration-test` to execute all cucumber tests
+
+
+How to use cuke4duke in your own project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Before you can use cuke4duke you have to prepare your environment. Here are the steps:
 
 Install JRuby
