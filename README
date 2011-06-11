@@ -33,10 +33,16 @@ You need to prepare your POM to include these declarations just as I did in this
 * add cuke4duke plugin, and add a pluginRepository to cuke4duke.
 * create features directory under the project root dir.
 
-Then you should be ready to go. On windows if you want to see the colored output in the console, you need [wac](https://github.com/aslakhellesoy/wac).
+Then you should be ready to go. `mvn cuke4duke:cucumber` will not compile test java files, you have to compile them first or bind this goal to some phase such as integration-test phase.
 
 Troubleshooting
 ==============
 
 * the installGems parameter of the cuke4duke plugin does not automatically install all required gems, you have to install them manually as I just showed you.
 * there is a intellij idea plugin for cucumber, though very limited.
+* on windows if you want to see the colored output in the console, you need [wac](https://github.com/aslakhellesoy/wac).
+* if you want to run only part of the existing features, you can use `features` parameter of cuke4duke plugin:
+
+  `mvn cuke4duke:cucumber -Dfeatures="features\call_step.feature features\second.feature"`
+
+  The default value of this parameter is "features", mean all features under the "features" dir.
