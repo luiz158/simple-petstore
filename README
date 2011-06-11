@@ -1,6 +1,8 @@
-This project borrows mathibodeau's petstore project and use it as a base for cuke4duke showcase.
+This project borrows mathibodeau's petstore project and use it as a
+base for cuke4duke showcase.
 
-Before you can use cuke4duke you have to prepare your environment. Here are the steps:
+Before you can use cuke4duke you have to prepare your
+environment. Here are the steps:
 
 Install JRuby
 =============
@@ -8,35 +10,47 @@ Install JRuby
 On Mac
 ------
 
-You can use mac ports to install JRuby, then use jruby gem to install the cuke4duke gem into `YOUR_MAVEN_REPO/.jruby`.
+You can use mac ports to install JRuby, then use jruby gem to install
+the cuke4duke gem into `YOUR_MAVEN_REPO/.jruby`.
 
-For example, in the console, type: `GEM_HOME=~/.m2/repository/.jruby GEM_PATH=~/.m2/repository/.jruby jruby -S gem install cuke4duke`
+For example, in the console, type: `GEM_HOME=~/.m2/repository/.jruby
+GEM_PATH=~/.m2/repository/.jruby jruby -S gem install cuke4duke`
 
 On Windows
 ----------
 
-JRuby has a windows installer so you just need to download it and double click it. You need to add jruby bin directory to your path env variable.
+JRuby has a windows installer so you just need to download it and
+double click it. You need to add jruby bin directory to your path env
+variable.
 
-On windows you can create two environment variables `GEM_HOME` and `GEM_PATH`, then in the cmd type:
+On windows you can create two environment variables `GEM_HOME` and
+`GEM_PATH`, then in the cmd type:
 
 `jruby -S gem install cuke4duke`
 
-If you are behind a http proxy, you can set you proxy by creating three env variables: `HTTP_PROXY`, `HTTP_PROXY_USER`, `HTTP_PROXY_PASS`. (see `jruby -S gem help env`)
+If you are behind a http proxy, you can set you proxy by creating
+three env variables: `HTTP_PROXY`, `HTTP_PROXY_USER`,
+`HTTP_PROXY_PASS`. (see `jruby -S gem help env`)
 
 Prepare your POM
 ================
 
-You need to prepare your POM to include these declarations just as I did in this demo project:
+You need to prepare your POM to include these declarations just as I
+did in this demo project:
 
-* add repositories to codehaus and cuke4duke, these two will be used to download cuke4duke and jruby dependencies from.
+* add repositories to codehaus and cuke4duke, these two will be used
+  to download cuke4duke and jruby dependencies from.
 * add dependency to cuke4duke.
 * add cuke4duke plugin, and add a pluginRepository to cuke4duke.
 * create features directory under the project root dir.
 
-Then you should be ready to go. On windows if you want to see the colored output in the console, you need [wac](https://github.com/aslakhellesoy/wac).
+Then you should be ready to go. On windows if you want to see the
+colored output in the console, you need [wac](https://github.com/aslakhellesoy/wac).
 
 Troubleshooting
 ==============
 
-* the installGems parameter of the cuke4duke plugin does not automatically install all required gems, you have to install them manually as I just showed you.
+* the installGems parameter of the cuke4duke plugin does not
+  automatically install all required gems, you have to install them
+  manually as I just showed you.
 * there is a intellij idea plugin for cucumber, though very limited.
