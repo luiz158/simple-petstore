@@ -56,7 +56,7 @@ You need to prepare your POM to include these declarations just as I did in this
 * add cuke4duke plugin, and add a pluginRepository to cuke4duke.
 * create features directory under the project root dir.
 
-Then you should be ready to go. `mvn cuke4duke:cucumber` will not compile test java files, you have to compile them first or bind this goal to some phase such as integration-test phase.
+Then you should be ready to go. `mvn cuke4duke:cucumber` will not compile test java files, you have to compile them first(`mvn compiler:testCompile`) or bind this goal to some phase such as integration-test phase.
 
 Troubleshooting
 ==============

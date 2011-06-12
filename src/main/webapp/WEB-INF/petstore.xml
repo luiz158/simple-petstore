@@ -24,8 +24,6 @@
     <!-- Support mapping based on controller class names as well -->
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
 
-    <context:component-scan base-package="com.pyxis.petstore.controller"/>
-
     <mvc:interceptors>
         <!-- Apply to all handler mappings -->
         <bean id="openSessionInView" class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
@@ -65,6 +63,7 @@
     </bean>
 
     <context:component-scan base-package="com.pyxis.petstore.domain"/>
+    <context:component-scan base-package="com.pyxis.petstore.controller"/>
 
     <bean id="cart" class="com.pyxis.petstore.domain.order.Cart" scope="session">
         <aop:scoped-proxy/>

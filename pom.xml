@@ -24,6 +24,10 @@
         <!--<url>https://www.pyxis-tech.ca/nexus/content/groups/public</url>-->
         <!--</repository>-->
         <repository>
+            <id>Maven Central</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
             <id>codehaus</id>
             <url>http://repository.codehaus.org</url>
         </repository>
@@ -69,9 +73,27 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.picocontainer</groupId>
+            <artifactId>picocontainer</artifactId>
+            <version>2.11.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium.client-drivers</groupId>
+            <artifactId>selenium-java-client-driver</artifactId>
+            <version>1.0.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -82,7 +104,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
+            <version>1.2.16</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.mail</groupId>
@@ -394,6 +416,7 @@
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -402,20 +425,6 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <classifier>jar</classifier>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -427,6 +436,53 @@
                     <stopKey>foo</stopKey>
                     <stopPort>9999</stopPort>
                 </configuration>
+                <executions>
+                	<execution>
+	                        <id>start-jetty</id>
+	                        <phase>pre-integration-test</phase>
+	                        <goals>
+	                                <goal>run</goal>
+	                        </goals>
+	                        <configuration>
+	                                <scanIntervalSeconds>0</scanIntervalSeconds>
+	                                <daemon>true</daemon>
+	                        </configuration>
+	                </execution>
+	                <execution>
+	                        <id>stop-jetty</id>
+	                        <phase>post-integration-test</phase>
+	                        <goals>
+	                                <goal>stop</goal>
+	                        </goals>
+	                </execution>
+		        </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>selenium-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <id>start-selenium</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start-server</goal>
+                        </goals>
+                        <configuration>
+                            <background>true</background>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-selenium</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop-server</goal>
+                        </goals>
+                        <configuration>
+                            <background>true</background>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>com.carbonfive.db-support</groupId>
@@ -482,6 +538,7 @@
                         <jvmArg>-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=4000</jvmArg>
                         <jvmArg>-Xmx384m</jvmArg-->
                         <jvmArg>-Dcuke4duke.objectFactory=cuke4duke.internal.jvmclass.PicoFactory</jvmArg>
+                        <!--<jvmArg>-Dcuke4duke.guiceModule=com.pyxis.petstore.DependenciesModule</jvmArg>-->
                         <jvmArg>-Dfile.encoding=UTF-8</jvmArg>
                     </jvmArgs>
                     <!-- You may not need all of these arguments in your own project. We have a lot here for testing purposes... -->
