@@ -19,11 +19,6 @@ public class SearchProductsSteps {
         this.pageNavigator = pageNavigator;
     }
 
-    @假如("^我在首页$")
-    public void onTheHomePage() {
-        pageNavigator.openHomePage();
-    }
-
     @当("^我用名称\"(.*)\"搜索宠物时$")
     public void searchPetsByName(String keyword) {
         pageNavigator.getCurrentPage().searchPetsByName(keyword);
