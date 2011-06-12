@@ -5,7 +5,7 @@
 以便我能够决定具体购买的宠物
 
 场景:查看某种宠物的存货
-    假如我在页面"/products/60090989/items"
+    假如我在宠物60090989的存货页面
     那么我应当看到3个现存货物:
         |Reference number|Description|Price|
         |12345678|Green adult lizard|18.50|

@@ -1,46 +1,39 @@
 package com.pyxis.petstore;
 
+import com.pyxis.petstore.pages.ProductsPage;
+import com.pyxis.petstore.utils.PageNavigator;
+import com.pyxis.petstore.utils.WebDriver;
 import cuke4duke.Table;
 import cuke4duke.annotation.I18n.ZH_CN.假如;
 import cuke4duke.annotation.I18n.ZH_CN.当;
-import cuke4duke.annotation.I18n.ZH_CN.而且;
 import cuke4duke.annotation.I18n.ZH_CN.那么;
-
-import java.util.List;
 
 import static junit.framework.Assert.assertTrue;
 
 public class SearchProductsSteps {
-
+    private PageNavigator pageNavigator;
     private WebDriver web;
 
-    public SearchProductsSteps(WebDriver web) {
+    public SearchProductsSteps(WebDriver web, PageNavigator pageNavigator) {
         this.web = web;
+        this.pageNavigator = pageNavigator;
     }
 
-    @假如("^我在页面\"(.+)\"$")
-    public void onPage(String pageUrl) {
-        web.open("/petstore" + pageUrl);
+    @假如("^我在首页$")
+    public void onTheHomePage() {
+        pageNavigator.openHomePage();
     }
 
-    @当("^我在搜索框中输入\"(.*)\"$")
-    public void inputInSearchBox(String keyword) {
-        web.type("keyword", keyword);
-    }
-
-    @而且("^点击(.+)按钮$")
-    public void pressButton(String buttonId) {
-        web.click(buttonId);
-        web.waitForPageToLoad("30000");
+    @当("^我用名称\"(.*)\"搜索宠物时$")
+    public void searchPetsByName(String keyword) {
+        pageNavigator.getCurrentPage().searchPetsByName(keyword);
     }
 
     @那么("^我应该看到(.+)个宠物结果:$")
     public void shouldSeeProducts(String number, Table results) {
-        assertTrue(web.isTextPresent("Found " + number + " result"));
-        for (List<String> row : results.rows()) {
-            assertTrue(web.isTextPresent(row.get(0)));
-            assertTrue(web.isTextPresent(row.get(1)));
-        }
+        ProductsPage productsPage = (ProductsPage) pageNavigator.getCurrentPage();
+        productsPage.assertTableContentsPresent(results);
+        assertTrue(productsPage.isTextPresent("Found " + number + " result"));
     }
 
 

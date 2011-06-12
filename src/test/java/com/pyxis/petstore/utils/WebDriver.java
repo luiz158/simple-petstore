@@ -1,4 +1,4 @@
-package com.pyxis.petstore;
+package com.pyxis.petstore.utils;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import cuke4duke.annotation.After;
@@ -40,4 +40,9 @@ public class WebDriver {
     public boolean isTextPresent(String pattern) {
         return selenium.isTextPresent(pattern);
     }
+
+    public String getTitle() {
+        return selenium.getTitle();
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.pyxis.petstore;
+package com.pyxis.petstore.utils;
 
 import com.google.inject.AbstractModule;
 

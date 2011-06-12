@@ -538,7 +538,7 @@
                         <jvmArg>-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=4000</jvmArg>
                         <jvmArg>-Xmx384m</jvmArg-->
                         <jvmArg>-Dcuke4duke.objectFactory=cuke4duke.internal.jvmclass.PicoFactory</jvmArg>
-                        <!--<jvmArg>-Dcuke4duke.guiceModule=com.pyxis.petstore.DependenciesModule</jvmArg>-->
+                        <!--<jvmArg>-Dcuke4duke.guiceModule=com.pyxis.petstore.utils.DependenciesModule</jvmArg>-->
                         <jvmArg>-Dfile.encoding=UTF-8</jvmArg>
                     </jvmArgs>
                     <!-- You may not need all of these arguments in your own project. We have a lot here for testing purposes... -->

@@ -1,4 +1,4 @@
-package com.pyxis.petstore;
+package com.pyxis.petstore.utils;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import org.junit.Ignore;
