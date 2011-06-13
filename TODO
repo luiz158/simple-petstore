@@ -2,3 +2,5 @@
 `MAVEN_OPTS='-Xms256m -Xmx256m -XX:MaxNewSize=256m -XX:MaxPermSize=1024m' mvn jetty:run`
 
 * -Dfeatures好像在mac上不好用？
+
+* 如何利用现有的persistence基础来准备测试数据？
