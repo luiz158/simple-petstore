@@ -61,11 +61,13 @@ Then you should be ready to go. `mvn cuke4duke:cucumber` will not compile test j
 Troubleshooting
 ==============
 
-* the installGems parameter of the cuke4duke plugin does not automatically install all required gems, you have to install them manually as I just showed you.
+* you can also use the cuke4duke maven plugin to automatically install jruby and gems, just use
+    `mvn cuke4duke:cucumber -Dcucumber.installGems=true`
+
 * there is a intellij idea plugin for cucumber, though very limited.
 * on windows if you want to see the colored output in the console, you need [wac](https://github.com/aslakhellesoy/wac).
 * if you want to run only part of the existing features, you can use `features` parameter of cuke4duke plugin:
 
-  `mvn cuke4duke:cucumber -Dfeatures="features\call_step.feature features\second.feature"`
+   `mvn cuke4duke:cucumber -Dcucumber.features="features\call_step.feature features\second.feature"`
 
   The default value of this parameter is "features", mean all features under the "features" dir.
