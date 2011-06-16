@@ -1,33 +1,22 @@
 package com.pyxis.petstore.utils;
 
-import com.pyxis.petstore.pages.HomePage;
-import com.pyxis.petstore.pages.MotherPage;
-import com.pyxis.petstore.pages.ProductItemsPage;
+import cuke4duke.annotation.I18n;
 
 public class PageNavigator {
-    private WebDriver web;
-    private MotherPage currentPage;
+    private WebDriver webDriver;
 
-    public PageNavigator(WebDriver web) {
-        this.web = web;
+    public PageNavigator(WebDriver webDriver) {
+        this.webDriver = webDriver;
     }
 
+    @I18n.ZH_CN.假如("^我在宠物(.+)的存货页面$")
     public void openProductItemsPage(String number) {
-        web.open("/petstore/products/" + number + "/items");
-        currentPage = new ProductItemsPage(this, web);
+        webDriver.open("/petstore/products/" + number + "/items");
     }
 
+    @I18n.ZH_CN.假如("^我在首页$")
     public void openHomePage() {
-        web.open("/petstore/");
-        currentPage = new HomePage(this, web);
-    }
-
-    public MotherPage getCurrentPage() {
-        return currentPage;
-    }
-
-    public void setCurrentPage(MotherPage page) {
-        this.currentPage = page;
+        webDriver.open("/petstore/");
     }
 
 
