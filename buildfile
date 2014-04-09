@@ -1,3 +1,4 @@
+Encoding.default_external = 'UTF-8'
 VERSION_NUMBER = '0.2-SNAPSHOT'
 
 HAMCREST = [:hamcrest_core, :hamcrest_library, :hamcrest_extra]
