@@ -9,5 +9,7 @@ target
 dependency.cache
 reports
 Gemfile.lock
+build
+.gradle
 *.classpath
 *.project
