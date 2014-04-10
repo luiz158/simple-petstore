@@ -4,6 +4,7 @@ jdk:
   - oraclejdk7
   - openjdk7
 
+
 before_script:
   - mysql -e "create database petstore_test;"
   - mysql -e "create user 'testbot'@'localhost' identified by 'petstore'";
