@@ -69,6 +69,7 @@ public class Routing implements Application {
             get("/orders/:number").to(new ShowOrder(orders, pages.order()));
             post("/orders").to(new PlaceOrder(cashier, pages.checkout(), messages));
             delete("/logout").to(new Logout());
+            map("/about").to(new StaticPage(pages.about()));
             map("/").to(new StaticPage(pages.home()));
         }});
 
