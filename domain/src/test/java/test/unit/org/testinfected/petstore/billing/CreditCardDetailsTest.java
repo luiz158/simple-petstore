@@ -1,6 +1,7 @@
 package test.unit.org.testinfected.petstore.billing;
 
 import org.junit.Test;
+import org.junit.Assert;
 
 import static org.hamcrest.CoreMatchers.describedAs;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -25,6 +26,11 @@ public class CreditCardDetailsTest {
     areSerializable() {
         assertThat("card details", validCreditCardDetails().build(), describedAs("are serializable", serializedForm(notNullValue())));
     }
+
+	@Test
+	public void areDisplayCardNumberRight() {
+		Assert.assertEquals("card display number", "XXXX-XXXX-XXXX-1111", validCreditCardDetails().build().getDisplayCardNumber());
+	}
 
     @Test public void
     areInvalidWithAnEmptyOrIncorrectCardNumber() {

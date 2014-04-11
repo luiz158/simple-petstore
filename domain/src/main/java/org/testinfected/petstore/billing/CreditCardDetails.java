@@ -33,6 +33,11 @@ public class CreditCardDetails extends PaymentMethod implements Serializable {
         return cardNumber.get();
     }
 
+	public String getDisplayCardNumber() {
+		int length = getCardNumber().length();
+		return "XXXX-XXXX-XXXX-" + getCardNumber().substring(length-4, length);
+	}
+
     public String getCardExpiryDate() {
         return cardExpiryDate.get();
     }
