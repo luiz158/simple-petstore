@@ -74,6 +74,12 @@ public class HeaderTest {
         assertThat("header", header, hasUniqueSelector("#home a", hasAttribute("href", "/")));
     }
 
+	@Test public void
+	linksToAboutPage() {
+		header = renderHeader().with(page).asDom();
+		assertThat("header about link", header, hasUniqueSelector("#about a", hasAttribute("href", "/about")));
+	}
+
     @Test public void
     indicatesWhenDisplayingCartContent() {
         Map<String, String> data = new HashMap<String, String>();

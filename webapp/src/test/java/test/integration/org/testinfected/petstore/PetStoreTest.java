@@ -130,6 +130,12 @@ public class PetStoreTest {
         logFile.assertHasEntry(containsString("\"GET /products HTTP/1.1\" 200"));
     }
 
+	@Test public void
+	displayAboutPage() throws Exception {
+		response = request.get("/about");
+		assertOK();
+	}
+
     @Test public void
     supportsHttpMethodOverride() throws IOException {
         response = request.withParameter("_method", "DELETE").post("/logout");
