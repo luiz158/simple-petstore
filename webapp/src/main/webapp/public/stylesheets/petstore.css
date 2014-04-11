@@ -57,7 +57,7 @@ body.petstore {
 #header ul {
 	position: absolute;
 	top: 73px;
-	left: 740px;
+	left: 700px;
 }
 
 #header ul li {
@@ -128,7 +128,7 @@ body.petstore {
 
 #tab {
 	margin-top: -1px;
-	margin-left: 792px;
+	margin-left: 752px;
 }
 
 #tab.cart {
