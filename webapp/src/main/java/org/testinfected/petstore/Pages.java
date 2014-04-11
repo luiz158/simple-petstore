@@ -33,6 +33,10 @@ public class Pages {
     public Page home() {
         return page("home");
     }
+    
+    public Page about() {
+        return page("about");
+    }
 
     public Page order() {
         return page("order");
