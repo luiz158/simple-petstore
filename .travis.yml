@@ -1,11 +1,13 @@
 language: java
-
 jdk:
-  - oraclejdk7
-  - openjdk7
-
+- oraclejdk7
+- openjdk7
 
 before_script:
-  - mysql -e "create database petstore_test;"
-  - mysql -e "create user 'testbot'@'localhost' identified by 'petstore'";
-  - mysql -u root -e "grant all on petstore_test.* to 'testbot'@'localhost'";
+- mysql -e "create database petstore_test;"
+- mysql -e "create user 'testbot'@'localhost' identified by 'petstore'";
+- mysql -u root -e "grant all on petstore_test.* to 'testbot'@'localhost'";
+
+deploy:
+  api_key:
+    secure: lN5XcPJXFaWROZaAq71zBHE/w+IAl6b7OinD6GPyH/TWxXHqW8TwEkyfFrZ86gvy+W+y6vv9t/bvahiDtrQXEEQFpdYJVGNtCI45MePNLrnAvwgxrY0NNjbrdfv6RSIdgm2xtPgLf/IUlxnY2ZRAYCrgaSz20WmFmbsbuxzGgpw=
