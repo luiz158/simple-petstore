@@ -55,7 +55,7 @@ To run the application, from the top-level directory use:
 
 `buildr run`
 
-## IntelliJ
+## Eclipse 
 
 If you use Eclipse, you can generate your project using:
 
