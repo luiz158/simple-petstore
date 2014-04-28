@@ -9,5 +9,6 @@ before_script:
 - mysql -u root -e "grant all on petstore_test.* to 'testbot'@'localhost'";
 
 deploy:
+  provider: heroku
   api_key:
     secure: lN5XcPJXFaWROZaAq71zBHE/w+IAl6b7OinD6GPyH/TWxXHqW8TwEkyfFrZ86gvy+W+y6vv9t/bvahiDtrQXEEQFpdYJVGNtCI45MePNLrnAvwgxrY0NNjbrdfv6RSIdgm2xtPgLf/IUlxnY2ZRAYCrgaSz20WmFmbsbuxzGgpw=
