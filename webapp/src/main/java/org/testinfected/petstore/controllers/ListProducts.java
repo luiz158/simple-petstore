@@ -25,7 +25,7 @@ public class ListProducts implements Application {
 
     public void handle(Request request, Response response) throws Exception {
         String keyword = request.parameter("keyword");
-        if (keyword.isEmpty()) {
+        if (null == keyword || keyword.isEmpty()) {
             response.redirectTo("/");
         } else {
 

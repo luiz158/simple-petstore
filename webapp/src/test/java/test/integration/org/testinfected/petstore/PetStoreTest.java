@@ -223,6 +223,13 @@ public class PetStoreTest {
         response.assertHasCookie(SESSION_COOKIE);
     }
 
+    @Test public void
+    redirectEmptySearch() throws Exception {
+        response = request.get("/products?keyword="); 
+        assertOK();
+        response.assertHasContent(not(containsString("result(s)")));
+    }
+
     private void assertOK() {
         assertNoError();
         response.assertOK();
