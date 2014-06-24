@@ -25,10 +25,15 @@ public class ListProducts implements Application {
 
     public void handle(Request request, Response response) throws Exception {
         String keyword = request.parameter("keyword");
-        List<Product> found = productCatalog.findByKeyword(keyword);
-        view.render(response, new Products().matching(keyword)
-                                                    .add(found)
-                                                    .withPhotosIn(attachmentStorage)
-        );
+        if (keyword.isEmpty()) {
+            response.redirectTo("/");
+        } else {
+
+            List<Product> found = productCatalog.findByKeyword(keyword);
+            view.render(response, new Products().matching(keyword)
+                            .add(found)
+                            .withPhotosIn(attachmentStorage)
+            );
+        }
     }
 }
