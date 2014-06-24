@@ -230,6 +230,13 @@ public class PetStoreTest {
         response.assertHasContent(not(containsString("result(s)")));
     }
 
+    @Test public void
+    redirectEmptyCart() throws Exception {
+        response = request.get("/cart");
+        assertOK();
+        response.assertHasContent(not(containsString("result(s)")));
+    }
+
     private void assertOK() {
         assertNoError();
         response.assertOK();
