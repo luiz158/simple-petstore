@@ -230,14 +230,6 @@ public class PetStoreTest {
         response.assertHasContent(not(containsString("result(s)")));
     }
 
-    @Test public void
-    detectEmptyCart() throws Exception {
-        response = request.get("/cart");
-        assertOK();
-
-        response.assertHasContent(containsString('<td class="total" id="cart-grand-total">0</td>'));
-    }
-
     private void assertOK() {
         assertNoError();
         response.assertOK();
