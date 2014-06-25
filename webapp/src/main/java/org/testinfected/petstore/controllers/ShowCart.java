@@ -17,9 +17,7 @@ public class ShowCart implements Application {
     }
 
     public void handle(Request request, Response response) throws Exception {
-
         if (SessionScope.cart(request).empty()) {
-            //viewEmptyCart.render(response);
             viewEmptyCart.render(response, null);
         } else {
             view.render(response, SessionScope.cart(request));

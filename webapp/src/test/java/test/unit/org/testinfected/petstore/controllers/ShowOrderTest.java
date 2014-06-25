@@ -40,8 +40,24 @@ public class ShowOrderTest {
         view.assertRenderedWith(sameOrderAs(order));
     }
 
+    @Test public void
+    redirectsToHomePageWhenOrderNumberIsInvalid() throws Exception {
+        request.addParameter("number", orderNumber);
+
+        orderBookDoesntContains(orderNumber);
+
+        showOrder.handle(request, response);
+        response.assertRedirectedTo("/");
+    }
+
     private Matcher<Object> sameOrderAs(Order order) {
         return Matchers.<Object>sameInstance(order);
+    }
+
+    private void orderBookDoesntContains(final String orderNumber) {
+        context.checking(new Expectations() {{
+            allowing(orderBook).find(new OrderNumber(orderNumber)); will(returnValue(null));
+        }});
     }
 
     private void orderBookContains(final Order order) {
