@@ -33,7 +33,7 @@ public class ProductsPageTest {
     @Test public void
     indicatesWhenNoMatchWasFound() {
         productsPage = renderProductsPage().with(products).asDom();
-        assertThat("products page", productsPage, hasUniqueSelector("#no-match", hasText(containsString("dogPLOUF"))));
+        assertThat("products page", productsPage, hasUniqueSelector("#no-match", hasText(containsString("dog"))));
     }
 
     @SuppressWarnings("unchecked")
