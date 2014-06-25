@@ -17,7 +17,8 @@ import static test.support.org.testinfected.petstore.builders.ItemBuilder.anItem
 public class ShowCartTest {
 
     MockView<Cart> view = new MockView<Cart>();
-    ShowCart showCart = new ShowCart(view);
+    MockView<Void> viewEmptyCart = new MockView<Void>();
+    ShowCart showCart = new ShowCart(view, viewEmptyCart);
 
     MockRequest request = new MockRequest();
     MockResponse response = new MockResponse();
@@ -36,6 +37,15 @@ public class ShowCartTest {
         showCart.handle(request, response);
         view.assertRenderedTo(response);
         view.assertRenderedWith(sameCartAs(cart));
+    }
+
+    @Test public void
+    rendersEmptyCart() throws Exception {
+        final Cart cart = aCart().build();
+        storeInSession(cart);
+
+        showCart.handle(request, response);
+        view.assertRenderedTo(response);
     }
 
     private Matcher<Object> sameCartAs(Cart cart) {
