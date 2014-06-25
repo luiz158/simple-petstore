@@ -43,7 +43,7 @@ public class Pages {
         return page("order");
     }
 
-    public View<Cart> emptyCart() {
+    public View<Void> emptyCart() {
         return page("cart-empty");
     }
 
