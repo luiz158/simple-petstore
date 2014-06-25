@@ -20,6 +20,9 @@ public class ShowOrder implements Application {
     public void handle(Request request, Response response) throws Exception {
         String number = request.parameter("number");
         Order order = orderBook.find(new OrderNumber(number));
+        if (null == order) {
+            response.redirectTo("/");
+        }
         view.render(response, order);
     }
 }
