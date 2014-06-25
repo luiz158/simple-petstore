@@ -30,7 +30,7 @@ public class CreditCardDetails extends PaymentMethod implements Serializable {
     }
 
     public String getCardNumber() {
-        return cardNumber.get();
+        return "XXXX-XXXX-XXXX-" + cardNumber.get().substring(12);//cardNumber.get();
     }
 
     public String getLastDigits() {
