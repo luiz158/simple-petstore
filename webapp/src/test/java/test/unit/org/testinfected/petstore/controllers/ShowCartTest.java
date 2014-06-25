@@ -45,7 +45,8 @@ public class ShowCartTest {
         storeInSession(cart);
 
         showCart.handle(request, response);
-        view.assertRenderedTo(response);
+
+        response.assertRedirectedTo("/");
     }
 
     private Matcher<Object> sameCartAs(Cart cart) {
