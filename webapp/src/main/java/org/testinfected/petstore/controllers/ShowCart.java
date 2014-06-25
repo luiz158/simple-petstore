@@ -9,12 +9,20 @@ import org.testinfected.petstore.util.SessionScope;
 
 public class ShowCart implements Application {
     private final View<Cart> view;
+    private final View<Void> viewEmptyCart;
 
-    public ShowCart(View<Cart> view) {
+    public ShowCart(View<Cart> view, View<Void> viewEmptyCart) {
         this.view = view;
+        this.viewEmptyCart = viewEmptyCart;
     }
 
     public void handle(Request request, Response response) throws Exception {
-        view.render(response, SessionScope.cart(request));
+
+        if (SessionScope.cart(request).empty()) {
+            //viewEmptyCart.render(response);
+            viewEmptyCart.render(response, null);
+        } else {
+            view.render(response, SessionScope.cart(request));
+        }
     }
 }

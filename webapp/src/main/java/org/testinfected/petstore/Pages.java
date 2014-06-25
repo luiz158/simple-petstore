@@ -43,6 +43,10 @@ public class Pages {
         return page("order");
     }
 
+    public View<Cart> emptyCart() {
+        return page("cart-empty");
+    }
+
     private <T> View<T> page(final String template) {
         return new View<T>() {
             public void render(Response response, T context) throws IOException {
