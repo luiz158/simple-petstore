@@ -12,7 +12,6 @@ import org.testinfected.petstore.order.Cart;
 import test.support.org.testinfected.petstore.web.MockView;
 
 import static test.support.org.testinfected.petstore.builders.CartBuilder.aCart;
-import static test.support.org.testinfected.petstore.builders.CartBuilder.anEmptyCart;
 import static test.support.org.testinfected.petstore.builders.ItemBuilder.anItem;
 
 public class ShowCartTest {
@@ -42,11 +41,12 @@ public class ShowCartTest {
 
     @Test public void
     rendersEmptyCart() throws Exception {
-        final Cart cart = anEmptyCart().build();
+        final Cart cart = aCart().build();
         storeInSession(cart);
 
         showCart.handle(request, response);
-        //view.assertRenderedTo(response);
+
+        response.assertRedirectedTo("/");
     }
 
     private Matcher<Object> sameCartAs(Cart cart) {
