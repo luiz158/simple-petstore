@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import static com.vtence.molecule.http.HttpMethod.DELETE;
 import static com.vtence.molecule.http.HttpMethod.GET;
 import static com.vtence.molecule.support.Dates.calendarDate;
+import java.util.Locale;
 import static org.hamcrest.CoreMatchers.containsString;
 
 public class ApacheCommonLoggerTest {
@@ -31,7 +32,7 @@ public class ApacheCommonLoggerTest {
     Logger logger = context.mock(Logger.class);
     Date currentTime = calendarDate(2012, 6, 27).atTime(12, 4, 0).inZone("GMT-05:00").toDate();
     ApacheCommonLogger apacheCommonLogger =
-            new ApacheCommonLogger(logger, BrokenClock.stoppedAt(currentTime), TimeZone.getTimeZone("GMT+01:00"));
+            new ApacheCommonLogger(logger, BrokenClock.stoppedAt(currentTime), TimeZone.getTimeZone("GMT+01:00"),Locale.FRANCE);
 
     MockRequest request = new MockRequest();
     MockResponse response = new MockResponse();
@@ -46,7 +47,7 @@ public class ApacheCommonLoggerTest {
             }
         });
         context.checking(new Expectations() {{
-            oneOf(logger).info("192.168.0.1 - - [27/Jun/2012:18:04:00 +0100] \"GET /products?keyword=dogs HTTP/1.1\" 200 28");
+            oneOf(logger).info("192.168.0.1 - - [27/juin/2012:18:04:00 +0100] \"GET /products?keyword=dogs HTTP/1.1\" 200 28");
         }});
 
         apacheCommonLogger.handle(request, response);
