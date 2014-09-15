@@ -29,7 +29,6 @@ import org.testinfected.petstore.util.Logging;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -78,7 +77,7 @@ public class PetStore {
             use(new ServerHeader(NAME));
             use(new DateHeader(clock));
             use(new ContentLengthHeader());
-            use(new ApacheCommonLogger(logger, clock, Locale.getDefault()));
+            use(new ApacheCommonLogger(logger, clock));
             use(new Failsafe());
             use(new FailureMonitor(failureReporter));
             use(new HttpMethodOverride());
