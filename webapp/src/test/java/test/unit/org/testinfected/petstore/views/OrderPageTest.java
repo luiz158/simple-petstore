@@ -92,10 +92,10 @@ public class OrderPageTest {
     @Test public void
     displaysPaymentDetails() {
         orderPage = renderOrderPage().with(order.paidWith(
-                aVisa().withNumber("9999 9999 9999").withExpiryDate("12/12"))).asDom();
+                aVisa().withNumber("9999 9999 9999 9999").withExpiryDate("12/12"))).asDom();
         assertThat("order page", orderPage, hasSelector("#payment-details span", matchesInAnyOrder(
                 hasText("Visa"),
-                hasText("9999 9999 9999"),
+                hasText("XXXX XXXX XXXX 9999"),
                 hasText("12/12"))));
     }
 
