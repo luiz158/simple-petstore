@@ -44,8 +44,7 @@ public class ListProductsTest {
         request.addParameter("keyword", keyword);
     }
 
-    @After public void
-    assertPageRendered() {
+   public void assertPageRendered() {
         view.assertRenderedTo(response);
     }
 
@@ -63,6 +62,8 @@ public class ListProductsTest {
         view.assertRenderedWith(productsFound(searchResults));
         view.assertRenderedWith(searchKeyword(keyword));
         view.assertRenderedWith(photosIn(photoLibrary));
+
+        assertPageRendered();
     }
 
     private Matcher<Object> photosIn(AttachmentStorage photos) {
@@ -85,12 +86,12 @@ public class ListProductsTest {
         }});
     }
 
-    @Test
-    public void checksEmptyKeyword() throws Exception {
+    @Test public void
+    redirectsToHomePageWithEmptyKeyword() throws Exception {
+        request.addParameter("keyword", "");
 
-        keyword = "";
-        addSearchKeywordToRequest(keyword);
         listProducts.handle(request, response);
-        view.assertRenderedWith(productsFound(searchResults));
+
+        response.assertRedirectedTo("/");
     }
 }
