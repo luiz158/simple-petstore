@@ -18,18 +18,19 @@ import com.vtence.molecule.support.MockResponse;
 
 public class ListProductsEmptyKeywordTest {
 
-	private final String keyword ="";
 	MockRequest request = new MockRequest();
 	MockResponse response = new MockResponse();
 	
 	@Before public void
     addSearchKeywordToRequest() {
-        request.addParameter("keyword", keyword);
+        
     }
 	
 	@Test
-	public void searchWithEmptyKeyword_RenderHomePage() throws Exception {
+	public void searchWithEmptyKeyword_RedirectToHomePage() throws Exception {
 		//Given
+		String keyword ="";
+		request.addParameter("keyword", keyword);
 		MockView<Products> productsView = new MockView<Products>();
 		ListProducts listProducts = new ListProducts(null,null,productsView);
 		
@@ -42,7 +43,21 @@ public class ListProductsEmptyKeywordTest {
 		response.assertStatus(HttpStatus.SEE_OTHER);	
 	}
 	
-	private Matcher<Object> sameCartAs(Cart cart) {
-	        return Matchers.<Object>sameInstance(cart);
+	@Test
+	public void searchWithBlankKeyword_RedirectToHomePage() throws Exception {
+		//Given
+		String keyword ="  ";
+		request.addParameter("keyword", keyword);
+		MockView<Products> productsView = new MockView<Products>();
+		ListProducts listProducts = new ListProducts(null,null,productsView);
+		
+		//When
+		listProducts.handle(request, response);
+		
+		
+		//Then
+		response.assertRedirectedTo("/");
+		response.assertStatus(HttpStatus.SEE_OTHER);	
 	}
+	
 }
