@@ -1,6 +1,7 @@
 package test.unit.org.testinfected.petstore.controllers;
 
 import com.vtence.molecule.Session;
+import com.vtence.molecule.http.HttpStatus;
 import com.vtence.molecule.support.MockRequest;
 import com.vtence.molecule.support.MockResponse;
 import org.hamcrest.Matcher;
@@ -49,7 +50,8 @@ public class ShowCartTest {
         storeInSession(cart);
 
         showCart.handle(request, response);
-        viewVoid.assertRenderedTo(response);
+        response.assertStatus(HttpStatus.SEE_OTHER);
+        response.assertRedirectedTo("/");
     }
 
     private Matcher<Object> sameCartAs(Cart cart) {
