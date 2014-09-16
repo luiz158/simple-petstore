@@ -1,3 +1,14 @@
+<script type="text/javascript">
+    function validateForm(){
+        var keyword = document.forms["searchForm"]["keyword"].value;
+        console.log("keyword="+keyword);
+        if (keyword == null || keyword == "") {
+            console.log("keyword is null, so am I");
+            return true;
+        }
+    }
+</script>
+
 <div class="content">
   <div id="logo">
     <a href="/">
@@ -5,7 +16,7 @@
     </a>
   </div>
   <div id="search-box">
-    <form action="/products" method="get">
+    <form name="searchForm"  action="/products" method="get" onsubmit="return validateForm()">
       <input id="keyword" name="keyword" type="text" size="20"/>
       <button id="search">
         <img src="/images/magnifier.png"/>
