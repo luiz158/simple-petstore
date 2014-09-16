@@ -78,7 +78,7 @@ public class PetStore {
             use(new ServerHeader(NAME));
             use(new DateHeader(clock));
             use(new ContentLengthHeader());
-            use(new ApacheCommonLogger(logger, clock,Locale.FRANCE));
+            use(new ApacheCommonLogger(logger, clock, Locale.getDefault()));
             use(new Failsafe());
             use(new FailureMonitor(failureReporter));
             use(new HttpMethodOverride());
