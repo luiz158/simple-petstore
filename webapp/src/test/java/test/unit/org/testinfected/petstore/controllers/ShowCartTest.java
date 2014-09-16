@@ -19,8 +19,7 @@ public class ShowCartTest {
 
     MockView<Cart> view = new MockView<Cart>();
 
-    MockView<Void> viewVoid = new MockView<Void>();
-    ShowCart showCart = new ShowCart(view, viewVoid);
+    ShowCart showCart = new ShowCart(view);
 
     MockRequest request = new MockRequest();
     MockResponse response;
