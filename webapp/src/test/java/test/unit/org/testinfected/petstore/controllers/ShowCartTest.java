@@ -12,6 +12,7 @@ import org.testinfected.petstore.order.Cart;
 import test.support.org.testinfected.petstore.web.MockView;
 
 import static test.support.org.testinfected.petstore.builders.CartBuilder.aCart;
+import static test.support.org.testinfected.petstore.builders.CartBuilder.anEmptyCart;
 import static test.support.org.testinfected.petstore.builders.ItemBuilder.anItem;
 
 public class ShowCartTest {
@@ -36,6 +37,16 @@ public class ShowCartTest {
         showCart.handle(request, response);
         view.assertRenderedTo(response);
         view.assertRenderedWith(sameCartAs(cart));
+    }
+
+    @Test public void
+    handleWithEmptyCart_ShouldRedirectHomePage() throws Exception {
+        final Cart cart = anEmptyCart().build();
+        storeInSession(cart);
+
+        showCart.handle(request, response);
+
+        response.assertRedirectedTo("/");
     }
 
     private Matcher<Object> sameCartAs(Cart cart) {
