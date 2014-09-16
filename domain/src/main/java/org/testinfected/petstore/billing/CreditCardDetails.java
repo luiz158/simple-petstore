@@ -8,7 +8,7 @@ import org.testinfected.petstore.validation.Valid;
 import java.io.Serializable;
 
 public class CreditCardDetails extends PaymentMethod implements Serializable {
-
+    private static final String MASK_PREFIX = "XXXX XXXX XXXX ";
     private final CreditCardType cardType;
     private final Constraint<String> cardNumber;
     private final NotNull<String> cardExpiryDate;
@@ -31,6 +31,12 @@ public class CreditCardDetails extends PaymentMethod implements Serializable {
 
     public String getCardNumber() {
         return cardNumber.get();
+    }
+
+    public String getCardNumberMasked(){
+        String cardOrigin = cardNumber.get().trim();
+        String suffix =cardOrigin.substring(cardOrigin.length()-4);
+        return  MASK_PREFIX + suffix;
     }
 
     public String getCardExpiryDate() {

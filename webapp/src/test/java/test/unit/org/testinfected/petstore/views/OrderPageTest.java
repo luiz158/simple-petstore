@@ -1,5 +1,6 @@
 package test.unit.org.testinfected.petstore.views;
 
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.w3c.dom.Element;
@@ -10,13 +11,7 @@ import test.support.org.testinfected.petstore.web.WebRoot;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.testinfected.hamcrest.dom.DomMatchers.hasAttribute;
-import static org.testinfected.hamcrest.dom.DomMatchers.hasSelector;
-import static org.testinfected.hamcrest.dom.DomMatchers.hasSize;
-import static org.testinfected.hamcrest.dom.DomMatchers.hasText;
-import static org.testinfected.hamcrest.dom.DomMatchers.hasUniqueSelector;
-import static org.testinfected.hamcrest.dom.DomMatchers.matches;
-import static org.testinfected.hamcrest.dom.DomMatchers.matchesInAnyOrder;
+import static org.testinfected.hamcrest.dom.DomMatchers.*;
 import static test.support.org.testinfected.petstore.builders.AddressBuilder.anAddress;
 import static test.support.org.testinfected.petstore.builders.CartBuilder.aCart;
 import static test.support.org.testinfected.petstore.builders.CreditCardBuilder.aVisa;
@@ -95,8 +90,8 @@ public class OrderPageTest {
                 aVisa().withNumber("9999 9999 9999 9999").withExpiryDate("12/12"))).asDom();
         assertThat("order page", orderPage, hasSelector("#payment-details span", matchesInAnyOrder(
                 hasText("Visa"),
-                hasText("XXXX XXXX XXXX 9999"),
-                hasText("12/12"))));
+                hasText("XXXX XXXX XXXX 9999")
+                )));
     }
 
     @Test public void
