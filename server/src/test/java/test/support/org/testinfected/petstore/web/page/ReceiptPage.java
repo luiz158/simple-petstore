@@ -32,10 +32,9 @@ public class ReceiptPage extends Page {
         browser.element(cellDisplayingTotalForItem(itemNumber)).assertText(being(totalPrice));
     }
 
-    public void showsCreditCardDetails(String cardType, String cardNumber, String cardExpiryDate) {
+    public void showsCreditCardDetails(String cardType, String cardNumber) {
         browser.element(cssSelector("#card-type span")).assertText(being(cardType));
         browser.element(cssSelector("#card-number span")).assertText(being(cardNumber));
-        browser.element(cssSelector("#card-expiry span")).assertText(being(cardExpiryDate));
     }
 
     public void showsBillingInformation(String firstName, String lastName, String emailAddress) {

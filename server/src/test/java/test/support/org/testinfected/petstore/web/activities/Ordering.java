@@ -37,8 +37,8 @@ public class Ordering {
         }
     }
 
-    public void wasPaidUsing(String cardType, String cardNumber, String cardExpiryDate) {
-        petstore.goToReceiptPage(orderNumber).showsCreditCardDetails(cardType, cardNumber, cardExpiryDate);
+    public void wasPaidUsing(String cardType, String cardNumber) {
+        petstore.goToReceiptPage(orderNumber).showsCreditCardDetails(cardType, cardNumber);
     }
 
     public void isBilledTo(String firstName, String lastName, String emailAddress) {

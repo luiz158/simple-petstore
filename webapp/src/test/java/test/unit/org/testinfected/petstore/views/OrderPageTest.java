@@ -91,8 +91,8 @@ public class OrderPageTest {
         assertThat("order page", orderPage, hasSelector("#payment-details span", matchesInAnyOrder(
                 hasText("Visa"),
                 hasText("XXXX XXXX XXXX 9999")
-                )));
-    }
+        )));
+     }
 
     @Test public void
     returnsToHomePageToContinueShopping() {

@@ -101,8 +101,8 @@ public class ApplicationDriver {
         user.loginAs(customer).order().containsItems(items);
     }
 
-    public void showsCreditCardDetails(String cardType, String cardNumber, String cardExpiryDate) {
-        user.loginAs(customer).order().wasPaidUsing(cardType, cardNumber, cardExpiryDate);
+    public void showsCreditCardDetails(String cardType, String cardNumber) {
+        user.loginAs(customer).order().wasPaidUsing(cardType, cardNumber);
     }
 
     public void showsBillingInformation(String firstName, String lastName, String emailAddress) {
