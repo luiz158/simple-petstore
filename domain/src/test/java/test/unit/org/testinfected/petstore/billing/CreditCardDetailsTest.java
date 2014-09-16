@@ -1,6 +1,10 @@
 package test.unit.org.testinfected.petstore.billing;
 
+import org.junit.Assert;
 import org.junit.Test;
+import org.testinfected.petstore.billing.Address;
+import org.testinfected.petstore.billing.CreditCardDetails;
+import org.testinfected.petstore.billing.CreditCardType;
 
 import static org.hamcrest.CoreMatchers.describedAs;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -47,5 +51,18 @@ public class CreditCardDetailsTest {
     @Test public void
     areValidWithAllRequiredDetails() {
         assertThat("valid card", validationOf(validCreditCardDetails()), succeeds());
+    }
+    
+    @Test public void
+    displayHiddenCardNumber()
+    {
+    	// Given 
+		CreditCardDetails creditCardDetails = aVisa().withNumber("4111 1111 1111 " + "1111").build();
+    	
+    	// When
+		String hiddenCardNumber = creditCardDetails.getCardNumberMasked();
+    	
+    	// Then
+		Assert.assertEquals("XXXX XXXX XXXX " + "1111", hiddenCardNumber);
     }
 }
