@@ -10,6 +10,7 @@ import org.testinfected.petstore.product.ProductCatalog;
 
 import java.sql.Connection;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsDatabase implements ProductCatalog {
@@ -35,6 +36,9 @@ public class ProductsDatabase implements ProductCatalog {
     }
 
     public List<Product> findByKeyword(String keyword) {
+        if (keyword!= null && keyword.trim().equals("")) {
+            return new ArrayList<Product>();
+        }
         return Select.from(products).
                 where("lower(name) like ? or lower(description) like ?", matchAnywhere(keyword), matchAnywhere(keyword)).
                 list(connection);

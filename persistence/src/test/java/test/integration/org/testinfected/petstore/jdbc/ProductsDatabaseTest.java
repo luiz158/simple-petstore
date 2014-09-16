@@ -163,4 +163,12 @@ public class ProductsDatabaseTest {
             }
         };
     }
+     @SuppressWarnings("unchecked")
+    @Test public void
+    findsNothingWhenKeywordIsEmpty() throws Exception {
+        given(aProduct().named("Dalmatian").describedAs("A big dog"));
+
+        Collection<Product> matches = productsDatabase.findByKeyword("");
+        assertThat("matching products", matches, is(empty()));
+    }
 }
