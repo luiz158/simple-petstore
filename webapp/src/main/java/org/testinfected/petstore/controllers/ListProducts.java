@@ -1,15 +1,16 @@
 package org.testinfected.petstore.controllers;
 
-import com.vtence.molecule.Application;
-import com.vtence.molecule.Request;
-import com.vtence.molecule.Response;
+import java.util.List;
+
 import org.testinfected.petstore.View;
 import org.testinfected.petstore.product.AttachmentStorage;
 import org.testinfected.petstore.product.Product;
 import org.testinfected.petstore.product.ProductCatalog;
 import org.testinfected.petstore.views.Products;
 
-import java.util.List;
+import com.vtence.molecule.Application;
+import com.vtence.molecule.Request;
+import com.vtence.molecule.Response;
 
 public class ListProducts implements Application {
 
@@ -23,12 +24,17 @@ public class ListProducts implements Application {
         this.view = view;
     }
 
-    public void handle(Request request, Response response) throws Exception {
+	public void handle(Request request, Response response) throws Exception {
         String keyword = request.parameter("keyword");
-        List<Product> found = productCatalog.findByKeyword(keyword);
-        view.render(response, new Products().matching(keyword)
-                                                    .add(found)
-                                                    .withPhotosIn(attachmentStorage)
-        );
+        if ( keyword.equals("")) {
+        	response.redirectTo("/");
+        	
+        }else {
+	        List<Product> found = productCatalog.findByKeyword(keyword);
+	        view.render(response, new Products().matching(keyword)
+	                                                    .add(found)
+	                                                    .withPhotosIn(attachmentStorage)
+	        );
+        }
     }
 }
