@@ -36,11 +36,11 @@ public class ListProductsTest {
     MockRequest request = new MockRequest();
     MockResponse response = new MockResponse();
 
-    String keyword = "dogs";
+    String keyword ;
     List<Product> searchResults = new ArrayList<Product>();
 
-    @Before public void
-    addSearchKeywordToRequest() {
+    public void addSearchKeywordToRequest(String keyword)
+    {
         request.addParameter("keyword", keyword);
     }
 
@@ -52,6 +52,9 @@ public class ListProductsTest {
     @SuppressWarnings("unchecked")
     @Test public void
     rendersProductsInCatalogMatchingKeyword() throws Exception {
+
+        keyword = "dogs";
+        addSearchKeywordToRequest(keyword);
         searchYields(
                 aProduct().withNumber("LAB-1234").named("Labrador").describedAs("Friendly dog").withPhoto("labrador.png"),
                 aProduct().describedAs("Guard dog"));
@@ -80,5 +83,14 @@ public class ListProductsTest {
         context.checking(new Expectations() {{
             allowing(productCatalog).findByKeyword(keyword); will(returnValue(searchResults));
         }});
+    }
+
+    @Test
+    public void checksEmptyKeyword() throws Exception {
+
+        keyword = "";
+        addSearchKeywordToRequest(keyword);
+        listProducts.handle(request, response);
+        view.assertRenderedWith(productsFound(searchResults));
     }
 }

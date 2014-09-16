@@ -9,6 +9,7 @@ import org.testinfected.petstore.product.Product;
 import org.testinfected.petstore.product.ProductCatalog;
 import org.testinfected.petstore.views.Products;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ListProducts implements Application {
@@ -25,10 +26,15 @@ public class ListProducts implements Application {
 
     public void handle(Request request, Response response) throws Exception {
         String keyword = request.parameter("keyword");
-        List<Product> found = productCatalog.findByKeyword(keyword);
+        List<Product> found;
+        if (keyword.isEmpty()) {
+            found = Collections.emptyList();
+        } else {
+            found = productCatalog.findByKeyword(keyword);
+        }
         view.render(response, new Products().matching(keyword)
-                                                    .add(found)
-                                                    .withPhotosIn(attachmentStorage)
+                        .add(found)
+                        .withPhotosIn(attachmentStorage)
         );
     }
 }
