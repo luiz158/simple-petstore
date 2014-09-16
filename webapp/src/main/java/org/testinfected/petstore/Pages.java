@@ -32,6 +32,8 @@ public class Pages {
     }
 
     public View<Cart> cart() {
+
+
         return page("cart");
     }
 
