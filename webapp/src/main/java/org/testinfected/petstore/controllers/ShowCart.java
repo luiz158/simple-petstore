@@ -11,10 +11,20 @@ public class ShowCart implements Application {
     private final View<Cart> view;
 
     public ShowCart(View<Cart> view) {
+
         this.view = view;
     }
 
     public void handle(Request request, Response response) throws Exception {
-        view.render(response, SessionScope.cart(request));
+        Cart lCart = SessionScope.cart(request) ;
+        if (lCart.empty())
+        {
+            response.redirectTo("/");
+        }
+        else
+        {
+            view.render(response, SessionScope.cart(request));
+        }
+
     }
 }
