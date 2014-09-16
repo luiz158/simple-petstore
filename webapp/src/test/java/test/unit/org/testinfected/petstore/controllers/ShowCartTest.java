@@ -40,16 +40,15 @@ public class ShowCartTest {
     }
 
     @Test public void
-    handleEmptyCartRedirectedToHome() throws Exception
+    redirectsToHomeWhenCartIsEmpty() throws Exception
     {
-        final Cart cart = aCart().build()  ;
-        storeInSession(cart);
+        final Cart emptyCart = aCart().build();
+        storeInSession(emptyCart);
 
         showCart.handle(request, response);
-        //view.assertRenderedTo(response);
+
         response.assertRedirectedTo("/");
-        //view.assertRenderedWith(sameCartAs(cart));
-    }
+     }
 
     private Matcher<Object> sameCartAs(Cart cart) {
         return Matchers.<Object>sameInstance(cart);
