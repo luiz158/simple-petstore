@@ -44,7 +44,7 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
 
         CreditCardDetails creditCard = new CreditCardDetails(
                 CreditCardType.valueOf(cardType.get(rs)), cardNumber.get(rs), cardExpiryDate.get(rs),
-                new Address(billingFirstName.get(rs), billingLastName.get(rs), billingEmail.get(rs), "meylan", billingCountry.get(rs) )
+                new Address(billingFirstName.get(rs), billingLastName.get(rs), billingEmail.get(rs), "grenoble", billingCountry.get(rs) )
         );
         idOf(creditCard).set(id.get(rs));
         return creditCard;
