@@ -1,7 +1,6 @@
 package org.testinfected.petstore;
 
 import com.vtence.molecule.Response;
-import com.vtence.molecule.templating.RenderingEngine;
 import com.vtence.molecule.templating.Templates;
 import org.testinfected.petstore.order.Cart;
 import org.testinfected.petstore.order.Order;
@@ -33,6 +32,10 @@ public class Pages {
 
     public View<Cart> cart() {
         return page("cart");
+    }
+
+    public View<Void> about() {
+        return page("about");
     }
 
     public View<Void> home() {

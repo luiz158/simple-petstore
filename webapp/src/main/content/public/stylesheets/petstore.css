@@ -423,6 +423,13 @@ fieldset#billing-address {
 	float: right;
 }
 
+#about{
+    float: left !IMPORTANT;
+}
+.footerLeft {
+    float: left;
+}
+
 #footer span {
 	float: right;
 	margin-top: 10px;
