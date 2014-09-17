@@ -128,6 +128,7 @@ public class PlaceOrderTest {
         request.addParameter("first-name", paymentDetails.getFirstName());
         request.addParameter("last-name", paymentDetails.getLastName());
         request.addParameter("email", paymentDetails.getEmail());
+        request.addParameter("city", paymentDetails.getCity());
         request.addParameter("country", paymentDetails.getCountry());
         request.addParameter("card-number", paymentDetails.getCardNumber());
         request.addParameter("card-type", paymentDetails.getCardType().toString());
