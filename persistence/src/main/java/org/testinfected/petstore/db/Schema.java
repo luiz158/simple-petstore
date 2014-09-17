@@ -63,7 +63,9 @@ public final class Schema {
                 schema.STRING("billing_first_name"),
                 schema.STRING("billing_last_name"),
                 schema.STRING("billing_email"),
-                schema.STRING("billing_country")));
+                schema.STRING("billing_country"),
+                schema.STRING("billing_street"))
+        );
     }
 
     public static Table<Order> orders(Table<PaymentMethod> payments) {

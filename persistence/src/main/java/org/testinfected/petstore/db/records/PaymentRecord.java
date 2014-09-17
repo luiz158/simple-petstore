@@ -25,8 +25,9 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
     private final Column<String> billingLastName;
     private final Column<String> billingEmail;
     private final Column<String> billingCountry;
+    private final Column<String> billingStreet;
 
-    public PaymentRecord(Column<Long> id, Column<String> paymentType, Column<String> cardType, Column<String> cardNumber, Column<String> cardExpiryDate, Column<String> billingFirstName, Column<String> billingLastName, Column<String> billingEmail, Column<String> billingCountry) {
+    public PaymentRecord(Column<Long> id, Column<String> paymentType, Column<String> cardType, Column<String> cardNumber, Column<String> cardExpiryDate, Column<String> billingFirstName, Column<String> billingLastName, Column<String> billingEmail, Column<String> billingCountry, Column<String> billingStreet) {
         this.id = id;
         this.paymentType = paymentType;
         this.cardType = cardType;
@@ -36,6 +37,7 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
         this.billingLastName = billingLastName;
         this.billingEmail = billingEmail;
         this.billingCountry = billingCountry;
+        this.billingStreet = billingStreet;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
 
         CreditCardDetails creditCard = new CreditCardDetails(
                 CreditCardType.valueOf(cardType.get(rs)), cardNumber.get(rs), cardExpiryDate.get(rs),
-                new Address(billingFirstName.get(rs), billingLastName.get(rs), billingEmail.get(rs), billingCountry.get(rs))
+                new Address(billingFirstName.get(rs), billingLastName.get(rs), billingEmail.get(rs), billingCountry.get(rs), billingStreet.get(rs))
         );
         idOf(creditCard).set(id.get(rs));
         return creditCard;
@@ -58,6 +60,7 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
         billingLastName.set(st, creditCard.getLastName());
         billingEmail.set(st, creditCard.getEmail());
         billingCountry.set(st, creditCard.getCountry());
+        billingStreet.set(st, creditCard.getStreet());
         cardType.set(st, creditCard.getCardType().name());
         cardNumber.set(st, creditCard.getCardNumber());
         cardExpiryDate.set(st, creditCard.getCardExpiryDate());
