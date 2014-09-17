@@ -18,7 +18,8 @@ public class Checkout {
     private CreditCardDetails details = MISSING_CARD_DETAILS;
     private ErrorMessages errors = new ErrorMessages();
 
-    public Checkout() {}
+    public Checkout() {
+    }
 
     public Checkout forTotalOf(BigDecimal amount) {
         this.total = amount;
@@ -60,6 +61,10 @@ public class Checkout {
 
     public String getLastName() {
         return details.getLastName();
+    }
+
+    public String getCountry() {
+        return details.getCountry();
     }
 
     public Checkout withErrors(ErrorMessages messages) {
