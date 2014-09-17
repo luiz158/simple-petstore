@@ -89,8 +89,8 @@ public class ApplicationDriver {
         user.loginAs(customer).order().amountsTo(amount);
     }
 
-    public void pay(String firstName, String lastName, String email, String cardType, String cardNumber, String cardExpiryDate) {
-        user.loginAs(customer).order().confirm(firstName, lastName, email, cardType, cardNumber, cardExpiryDate);
+    public void pay(String firstName, String lastName, String email, String country, String cardType, String cardNumber, String cardExpiryDate) {
+        user.loginAs(customer).order().confirm(firstName, lastName, email, country, cardType, cardNumber, cardExpiryDate);
     }
 
     public void showsOrderTotal(String total) {
