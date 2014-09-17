@@ -64,7 +64,7 @@ public class Checkout {
     }
 
     public String getCity() {
-        return "grenoble";
+        return details.getCity();
     }
     public String getCountry() {
         return details.getCountry();
