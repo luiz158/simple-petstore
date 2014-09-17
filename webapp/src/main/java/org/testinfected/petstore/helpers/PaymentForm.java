@@ -20,7 +20,7 @@ public class PaymentForm extends Form {
                         request.parameter("first-name"),
                         request.parameter("last-name"),
                         request.parameter("email"),
-                        request.parameter("country"))));
+                        request.parameter("country"), "Grenoble")));
     }
 
     private final Valid<CreditCardDetails> paymentDetails;

@@ -1,7 +1,7 @@
 package org.testinfected.petstore.billing;
 
-import org.testinfected.petstore.validation.Validates;
 import org.testinfected.petstore.validation.NotNull;
+import org.testinfected.petstore.validation.Validates;
 
 import java.io.Serializable;
 
@@ -11,7 +11,10 @@ public class Address implements Serializable {
     private final String emailAddress;
     private final String country;
 
-    public Address(String firstName, String lastName, String emailAddress, String country) {
+    private String city;
+
+    public Address(String firstName, String lastName, String emailAddress, String country, String city) {
+        this.city = city;
         this.firstName = Validates.notNull(firstName);
         this.lastName = Validates.notNull(lastName);
         this.emailAddress = emailAddress;
@@ -33,6 +36,11 @@ public class Address implements Serializable {
     public String getCountry() {
         return country;
     }
+
+    public String getCity() {
+        return city;
+    }
+
 
     @Override
     public boolean equals(Object o) {

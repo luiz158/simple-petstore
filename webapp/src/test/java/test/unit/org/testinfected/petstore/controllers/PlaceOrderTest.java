@@ -129,6 +129,7 @@ public class PlaceOrderTest {
         request.addParameter("last-name", paymentDetails.getLastName());
         request.addParameter("email", paymentDetails.getEmail());
         request.addParameter("country", paymentDetails.getCountry());
+        request.addParameter("city",paymentDetails.getCity());
         request.addParameter("card-number", paymentDetails.getCardNumber());
         request.addParameter("card-type", paymentDetails.getCardType().toString());
         request.addParameter("expiry-date", paymentDetails.getCardExpiryDate());
