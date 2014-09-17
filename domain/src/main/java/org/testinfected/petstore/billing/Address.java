@@ -9,11 +9,17 @@ public class Address implements Serializable {
     private final NotNull<String> firstName;
     private final NotNull<String> lastName;
     private final String emailAddress;
+    private String country;
 
     public Address(String firstName, String lastName, String emailAddress) {
+        this(firstName, lastName, emailAddress, null);
+    }
+
+    public Address(String firstName, String lastName, String emailAddress, String country) {
         this.firstName = Validates.notNull(firstName);
         this.lastName = Validates.notNull(lastName);
         this.emailAddress = emailAddress;
+        this.country = country;
     }
 
     public String getFirstName() {
@@ -49,5 +55,9 @@ public class Address implements Serializable {
         result = 31 * result + lastName.hashCode();
         result = 31 * result + (emailAddress != null ? emailAddress.hashCode() : 0);
         return result;
+    }
+
+    public String getCountry() {
+        return country;
     }
 }

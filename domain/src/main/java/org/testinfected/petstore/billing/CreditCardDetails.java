@@ -48,4 +48,6 @@ public class CreditCardDetails extends PaymentMethod implements Serializable {
     public String getEmail() {
         return billingAddress.get().getEmailAddress();
     }
+
+    public String getCountry() { return billingAddress.get().getCountry(); }
 }

@@ -24,6 +24,7 @@ public class Cashier implements SalesAssistant {
                 final Order order = new Order(nextNumber);
                 order.addItemsFrom(cart);
                 order.pay(paymentMethod);
+                //order.billingCountry(billingCountry) ;
                 orderBook.record(order);
                 cart.clear();
                 return nextNumber;

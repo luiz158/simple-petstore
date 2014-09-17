@@ -21,7 +21,7 @@ public class OrderRecord extends AbstractRecord<Order> {
 
     private final Record<? extends PaymentMethod> payments;
 
-    public OrderRecord(Column<Long> id, Column<String> number, Column<Long> paymentId, Record<? extends PaymentMethod> payments) {
+    public OrderRecord(Column<Long> id, Column<String> number,  Column<Long> paymentId, Record<? extends PaymentMethod> payments) {
         this.id = id;
         this.number = number;
         this.paymentId = paymentId;

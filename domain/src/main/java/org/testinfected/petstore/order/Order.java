@@ -19,9 +19,10 @@ public class Order {
 
     private PaymentMethod paymentMethod;
 
-    public Order(OrderNumber number) {
+    public Order(OrderNumber number)
+    {
         this.number = number;
-    }
+     }
 
     public String getNumber() {
         return number.getNumber();
@@ -80,4 +81,6 @@ public class Order {
     public String toString() {
         return "#" + number.toString();
     }
+
+
 }
