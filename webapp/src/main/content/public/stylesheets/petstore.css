@@ -426,6 +426,11 @@ fieldset#billing-address {
 #about{
     float: left !IMPORTANT;
 }
+
+#contacts{
+
+}
+
 .footerLeft {
     float: left;
 }
