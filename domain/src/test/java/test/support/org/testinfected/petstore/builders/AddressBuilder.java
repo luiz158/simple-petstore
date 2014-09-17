@@ -7,6 +7,7 @@ public class AddressBuilder implements Builder<Address> {
     private String firstName = "John";
     private String lastName = "Doe";
     private String emailAddress = "jdoe@gmail.com";
+    private String country = "France";
 
     public static AddressBuilder anAddress() {
         return new AddressBuilder();
@@ -27,7 +28,12 @@ public class AddressBuilder implements Builder<Address> {
         return this;
     }
 
+    public AddressBuilder withCountry(String country) {
+        this.country = country;
+        return this;
+    }
+
     public Address build() {
-        return new Address(firstName, lastName, emailAddress);
+        return new Address(firstName, lastName, emailAddress, country);
     }
 }
