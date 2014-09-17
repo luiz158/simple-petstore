@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 public class Checkout {
 
-    private static final Address UNKNOWN_ADDRESS = new Address("", "", "", "", "Grenoble");
+    private static final Address UNKNOWN_ADDRESS = new Address("", "", "", "", "");
     private static final CreditCardDetails MISSING_CARD_DETAILS =
             new CreditCardDetails(CreditCardType.amex, "", "", UNKNOWN_ADDRESS);
 
@@ -18,7 +18,8 @@ public class Checkout {
     private CreditCardDetails details = MISSING_CARD_DETAILS;
     private ErrorMessages errors = new ErrorMessages();
 
-    public Checkout() {}
+    public Checkout() {
+    }
 
     public Checkout forTotalOf(BigDecimal amount) {
         this.total = amount;
@@ -60,6 +61,13 @@ public class Checkout {
 
     public String getLastName() {
         return details.getLastName();
+    }
+
+    public String getCity() {
+        return "grenoble";
+    }
+    public String getCountry() {
+        return details.getCountry();
     }
 
     public Checkout withErrors(ErrorMessages messages) {

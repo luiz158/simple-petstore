@@ -5,8 +5,6 @@ import com.vtence.molecule.support.MockResponse;
 import org.hamcrest.Matcher;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.testinfected.petstore.controllers.ListProducts;
@@ -89,6 +87,24 @@ public class ListProductsTest {
     @Test public void
     redirectsToHomePageWithEmptyKeyword() throws Exception {
         request.addParameter("keyword", "");
+
+        listProducts.handle(request, response);
+
+        response.assertRedirectedTo("/");
+    }
+
+    @Test public void
+    redirectsToHomePageWithNotBlankKeyword() throws Exception {
+        request.addParameter("keyword", " ");
+
+        listProducts.handle(request, response);
+
+        response.assertRedirectedTo("/");
+    }
+
+    @Test public void
+    redirectsToHomePageWithTabedKeyword() throws Exception {
+        request.addParameter("keyword", "\t");
 
         listProducts.handle(request, response);
 

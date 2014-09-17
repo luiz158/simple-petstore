@@ -36,14 +36,16 @@ public class CheckoutPageTest {
     Element checkoutPage;
     Checkout checkout = new Checkout();
 
-    @Test public void
+    @Test
+    public void
     displaysOrderSummary() {
         checkoutPage = renderCheckoutPage().with(checkout.forTotalOf(new BigDecimal("250.00"))).asDom();
         assertThat("checkout page", checkoutPage, hasUniqueSelector("#cart-grand-total", hasText("250.00")));
     }
 
     @SuppressWarnings("unchecked")
-    @Test public void
+    @Test
+    public void
     displaysPurchaseForm() {
         checkoutPage = renderCheckoutPage().with(checkout).asDom();
         assertThat("checkout page", checkoutPage, hasCheckoutForm(anElement(
@@ -55,20 +57,23 @@ public class CheckoutPageTest {
         assertThat("checkout page", checkoutPage, hasCheckoutForm(hasSubmitButton()));
     }
 
-    @Test public void
+    @Test
+    public void
     fillsCardTypeSelectionList() {
         checkoutPage = renderCheckoutPage().with(checkout).asDom();
         assertThat("checkout page", checkoutPage, hasSelector("#card-type option", hasCreditCardOptions()));
     }
 
-    @Test public void
+    @Test
+    public void
     returnsToHomePageToContinueShopping() {
         checkoutPage = renderCheckoutPage().with(checkout).asDom();
         assertThat("checkout page", checkoutPage, hasUniqueSelector("a.cancel", hasAttribute("href", "/")));
     }
 
     @SuppressWarnings("unchecked")
-    @Test public void
+    @Test
+    public void
     rendersValidationErrors() throws Exception {
         ErrorMessages errors = new ErrorMessages();
         errors.add("paymentDetails", "invalid.paymentDetails");
@@ -78,17 +83,18 @@ public class CheckoutPageTest {
         checkoutPage = renderCheckoutPage().with(checkout.withErrors(errors)).asDom();
 
         assertThat("payment errors", checkoutPage, hasSelector(".errors", allOf(hasChild(
-                hasText("invalid.paymentDetails"))
+                        hasText("invalid.paymentDetails"))
         )));
         assertThat("card number errors", checkoutPage, hasSelector(".errors", allOf(hasChild(
                 hasText("empty.paymentDetails.cardNumber")), hasChild(hasText("incorrect.paymentDetails.cardNumber")))));
     }
 
     @SuppressWarnings("unchecked")
-    @Test public void
+    @Test
+    public void
     restoresFormValues() throws Exception {
         AddressBuilder billingAddress = anAddress().
-                withFirstName("Jack").withLastName("Johnson").withEmail("jack@gmail.com");
+                withFirstName("Jack").withLastName("Johnson").withEmail("jack@gmail.com").withCountry("FRANCE");
         CreditCardDetails paymentDetails = aVisa().
                 withNumber("4111111111111111").
                 withExpiryDate("2015-10-10").
@@ -96,7 +102,7 @@ public class CheckoutPageTest {
 
         checkoutPage = renderCheckoutPage().with(checkout.withPayment(paymentDetails)).asDom();
 
-        assertThat("billing information", checkoutPage, hasCheckoutForm(hasBillingInformation("Jack", "Johnson", "jack@gmail.com")));
+        assertThat("billing information", checkoutPage, hasCheckoutForm(hasBillingInformation("Jack", "Johnson", "jack@gmail.com", "grenoble","FRANCE")));
         assertThat("payment information", checkoutPage, hasCheckoutForm(hasCreditCardDetails(CreditCardType.visa, "4111111111111111", "2015-10-10")));
     }
 
@@ -105,15 +111,18 @@ public class CheckoutPageTest {
     }
 
     private Matcher<Element> hasEmptyBillingInformation() {
-        return hasBillingInformation("", "", "");
+        return hasBillingInformation("", "", "", "","");
     }
 
     @SuppressWarnings("unchecked")
-    private Matcher<Element> hasBillingInformation(String firstName, String lastName, String email) {
+    private Matcher<Element> hasBillingInformation(String firstName, String lastName, String email, String city,String country) {
         return hasUniqueSelector("#billing-address", hasInputFields(matches(
                 anElement(hasName("first-name"), hasAttribute("value", firstName)),
                 anElement(hasName("last-name"), hasAttribute("value", lastName)),
-                anElement(hasName("email"), hasAttribute("value", email)))));
+                anElement(hasName("email"), hasAttribute("value", email)),
+                anElement(hasName("city"), hasAttribute("value", city)),
+                anElement(hasName("country"), hasAttribute("value", country))
+        )));
     }
 
     @SuppressWarnings("unchecked")
