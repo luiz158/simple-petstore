@@ -1,5 +1,6 @@
 package test.unit.org.testinfected.petstore.billing;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.testinfected.petstore.billing.Address;
 
@@ -22,15 +23,18 @@ public class AddressTest {
         Address address = anAddress().
                 withFirstName("John").
                 withLastName("Doe").
-                withEmail("jdoe@gmail.com").build();
+                withEmail("jdoe@gmail.com").
+                withCountry("USA").build();
         Address shouldMatch = anAddress().
                 withFirstName("John").
                 withLastName("Doe").
-                withEmail("jdoe@gmail.com").build();
+                withEmail("jdoe@gmail.com").
+                withCountry("USA").build();
         Address shouldNotMatch = anAddress().
                 withFirstName("Jane").
                 withLastName("Doe").
-                withEmail("jdoe@gmail.com").build();
+                withEmail("jdoe@gmail.com").
+                withCountry("Scottland").build();
         assertThat("address", address, equalTo(shouldMatch));
         assertThat("hash code", address.hashCode(), equalTo(shouldMatch.hashCode()));
         assertThat("address ", address, not(equalTo(shouldNotMatch)));
@@ -46,6 +50,11 @@ public class AddressTest {
         assertThat("validation of address with missing last name", validationOf(anAddress().withLastName(MISSING)), violates(on("lastName"), withMessage("missing")));
     }
 
+    @Test public void
+    isInvalidWithoutACountry() {
+        assertThat("validation of address with missing country", validationOf(anAddress().withCountry(MISSING)), violates(on("country"), withMessage("missing")));
+    }
+    
     @Test public void
     isValidWithAFullName() {
         assertThat("validation of valid address", validationOf(anAddress().withFirstName("Joe").withLastName("Blow")), succeeds());

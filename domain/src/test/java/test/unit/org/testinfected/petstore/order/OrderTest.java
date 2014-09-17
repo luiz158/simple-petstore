@@ -10,6 +10,8 @@ import org.testinfected.petstore.order.LineItem;
 import org.testinfected.petstore.order.Order;
 import org.testinfected.petstore.product.Item;
 
+import test.support.org.testinfected.petstore.builders.AddressBuilder;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

@@ -62,7 +62,8 @@ public final class Schema {
                 schema.STRING("card_expiry_date"),
                 schema.STRING("billing_first_name"),
                 schema.STRING("billing_last_name"),
-                schema.STRING("billing_email")));
+                schema.STRING("billing_email"),
+                schema.STRING("billing_country")));
     }
 
     public static Table<Order> orders(Table<PaymentMethod> payments) {
