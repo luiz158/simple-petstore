@@ -121,7 +121,7 @@ public class PetStoreTest {
     logsAllAccesses() throws Exception {
         response = request.get("/products");
         assertOK();
-        logFile.assertHasEntry(containsString("\"GET /products HTTP/1.1\" 200"));
+        logFile.assertHasEntry(containsString("\"GET / HTTP/1.1\" 200"));
     }
 
     @Test public void

@@ -35,7 +35,7 @@ public class ReceiptPage extends Page {
     public void showsCreditCardDetails(String cardType, String cardNumber, String cardExpiryDate) {
         browser.element(cssSelector("#card-type span")).assertText(being(cardType));
         browser.element(cssSelector("#card-number span")).assertText(being(cardNumber));
-        browser.element(cssSelector("#card-expiry span")).assertText(being(cardExpiryDate));
+        browser.element(cssSelector("#card-expiry span")).assertDoesNotExist();
     }
 
     public void showsBillingInformation(String firstName, String lastName, String emailAddress) {
