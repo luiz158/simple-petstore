@@ -88,7 +88,7 @@ public class CheckoutPageTest {
     @Test public void
     restoresFormValues() throws Exception {
         AddressBuilder billingAddress = anAddress().
-                withFirstName("Jack").withLastName("Johnson").withEmail("jack@gmail.com");
+                withFirstName("Jack").withLastName("Johnson").withEmail("jack@gmail.com").withCountry("France").withStreet("QualityStreet");
         CreditCardDetails paymentDetails = aVisa().
                 withNumber("4111111111111111").
                 withExpiryDate("2015-10-10").
@@ -96,7 +96,7 @@ public class CheckoutPageTest {
 
         checkoutPage = renderCheckoutPage().with(checkout.withPayment(paymentDetails)).asDom();
 
-        assertThat("billing information", checkoutPage, hasCheckoutForm(hasBillingInformation("Jack", "Johnson", "jack@gmail.com", "France")));
+        assertThat("billing information", checkoutPage, hasCheckoutForm(hasBillingInformation("Jack", "Johnson", "jack@gmail.com", "QualityStreet", "France")));
         assertThat("payment information", checkoutPage, hasCheckoutForm(hasCreditCardDetails(CreditCardType.visa, "4111111111111111", "2015-10-10")));
     }
 
@@ -105,15 +105,16 @@ public class CheckoutPageTest {
     }
 
     private Matcher<Element> hasEmptyBillingInformation() {
-        return hasBillingInformation("", "", "","");
+        return hasBillingInformation("", "", "", "", "");
     }
 
     @SuppressWarnings("unchecked")
-    private Matcher<Element> hasBillingInformation(String firstName, String lastName, String email, String country) {
+    private Matcher<Element> hasBillingInformation(String firstName, String lastName, String email, String street, String country) {
         return hasUniqueSelector("#billing-address", hasInputFields(matches(
                 anElement(hasName("first-name"), hasAttribute("value", firstName)),
                 anElement(hasName("last-name"), hasAttribute("value", lastName)),
                 anElement(hasName("email"), hasAttribute("value", email)),
+                anElement(hasName("street"), hasAttribute("value", street)),
                 anElement(hasName("country"), hasAttribute("value", country)))));
     }
 
