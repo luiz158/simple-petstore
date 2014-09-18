@@ -1,1 +1,1 @@
-web: ./build/install/petstore/bin/petstore -e db4free
+web: ./server/build/install/petstoreDreamers/bin/petstoreDreamers -e db4free

@@ -141,4 +141,4 @@ task 'db-reset'(type: JavaExec) {
   args = ['-e', env, 'reset']
 }
 
-task 'stage' (dependsOn: ['clean', 'installApp'])
+task 'stage' (dependsOn: ['clean', ':server:installApp'])

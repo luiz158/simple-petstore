@@ -1,3 +1,7 @@
+apply plugin: 'application'
+applicationName = 'petstoreDreamers'
+mainClassName = 'org.testinfected.petstore.Launcher'
+
 dependencies {
   compile project(':domain')
   compile project(':persistence')
