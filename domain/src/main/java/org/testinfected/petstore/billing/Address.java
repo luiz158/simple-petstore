@@ -1,5 +1,7 @@
 package org.testinfected.petstore.billing;
 
+import org.testinfected.petstore.validation.Constraint;
+import org.testinfected.petstore.validation.NotEmpty;
 import org.testinfected.petstore.validation.Validates;
 import org.testinfected.petstore.validation.NotNull;
 
@@ -9,13 +11,13 @@ public class Address implements Serializable {
     private final NotNull<String> firstName;
     private final NotNull<String> lastName;
     private final String emailAddress;
-	private final NotNull<String> country;
+	private final NotEmpty country;
 
 	public Address(String firstName, String lastName, String emailAddress, String country) {
 		this.firstName = Validates.notNull(firstName);
         this.lastName = Validates.notNull(lastName);
         this.emailAddress = emailAddress;
-        this.country = Validates.notNull(country);
+        this.country = Validates.notEmpty(country);
     }
 
     public String getFirstName() {

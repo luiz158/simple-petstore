@@ -9,7 +9,7 @@ public class NotEmpty implements Serializable, Constraint<String> {
     private String value;
 
     public NotEmpty(String value) {
-        this.value = value;
+        this.value = value == null? null : value.trim();
     }
 
     public String get() {
@@ -22,5 +22,21 @@ public class NotEmpty implements Serializable, Constraint<String> {
 
     private boolean satisfied() {
         return value != null && !value.isEmpty();
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        @SuppressWarnings("unchecked")
+        NotEmpty notEmpty = (NotEmpty) o;
+
+        if (value != null ? !value.equals(notEmpty.value) : notEmpty.value != null) return false;
+
+        return true;
+    }
+
+    public int hashCode() {
+        return value != null ? value.hashCode() : 0;
     }
 }
