@@ -74,7 +74,7 @@ public class CheckoutPageTest {
         errors.add("paymentDetails", "invalid.paymentDetails");
         errors.add("paymentDetails.cardNumber", "empty.paymentDetails.cardNumber");
         errors.add("paymentDetails.cardNumber", "incorrect.paymentDetails.cardNumber");
-
+        errors.add("paymentDetails.billingAddress.country", "empty.paymentDetails.billingAddress.country");
         checkoutPage = renderCheckoutPage().with(checkout.withErrors(errors)).asDom();
 
         assertThat("payment errors", checkoutPage, hasSelector(".errors", allOf(hasChild(
@@ -82,7 +82,12 @@ public class CheckoutPageTest {
         )));
         assertThat("card number errors", checkoutPage, hasSelector(".errors", allOf(hasChild(
                 hasText("empty.paymentDetails.cardNumber")), hasChild(hasText("incorrect.paymentDetails.cardNumber")))));
+
+        assertThat("country errors", checkoutPage, hasSelector(".errors", allOf(hasChild(
+                hasText("empty.paymentDetails.billingAddress.country")))));
     }
+
+
 
     @SuppressWarnings("unchecked")
     @Test public void
