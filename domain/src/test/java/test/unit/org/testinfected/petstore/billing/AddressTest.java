@@ -59,7 +59,7 @@ public class AddressTest {
 
     @Test public void
     isInvalidWithABlankCountry() {
-        assertThat("validation of address with missing country", validationOf(anAddress().withCountry(BLANK)), violates(on("country"), withMessage("empty")));
+        assertThat("validation of address with empty country", validationOf(anAddress().withCountry(BLANK)), violates(on("country"), withMessage("empty")));
     }
     
     @Test public void
