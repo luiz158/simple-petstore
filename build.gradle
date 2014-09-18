@@ -140,3 +140,5 @@ task 'db-reset'(type: JavaExec) {
   classpath = project(':server').sourceSets.main.runtimeClasspath
   args = ['-e', env, 'reset']
 }
+
+task 'stage' (dependsOn: ['clean', 'installApp'])
