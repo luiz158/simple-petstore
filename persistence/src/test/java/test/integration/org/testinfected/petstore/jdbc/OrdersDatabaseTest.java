@@ -77,7 +77,7 @@ public class OrdersDatabaseTest {
                         anItem().withNumber("00000100").priced("100.00"),
                         anItem().withNumber("00000100").priced("100.00"),
                         anItem().withNumber("00000111").describedAs("White lizard"))),
-                anOrder().paidWith(validCreditCardDetails().billedTo(anAddress().withCountry("FRANCE")))
+                anOrder().paidWith(validCreditCardDetails().billedTo(anAddress().withCountry("FRANCE").withCity("Meylan")))
         );
 
         for (OrderBuilder order : sampleOrders) {
