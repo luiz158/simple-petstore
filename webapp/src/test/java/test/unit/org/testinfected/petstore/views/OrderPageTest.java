@@ -75,12 +75,13 @@ public class OrderPageTest {
     displaysBillingInformation() {
         orderPage = renderOrderPage().with(
                 order.paidWith(aVisa().billedTo(anAddress().
-                        withFirstName("John").withLastName("Doe").withEmail("jdoe@gmail.com").withCountry("FRANCE"))))
+                        withFirstName("John").withLastName("Doe").withEmail("jdoe@gmail.com").withZipCode("38000").withCountry("FRANCE"))))
                 .asDom();
         assertThat("order page", orderPage, hasSelector("#billing-address span", matchesInAnyOrder(
                 hasText("John"),
                 hasText("Doe"),
                 hasText("jdoe@gmail.com"),
+                hasText("38000"),
                 hasText("FRANCE"))));
     }
 

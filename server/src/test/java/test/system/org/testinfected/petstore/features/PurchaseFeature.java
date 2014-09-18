@@ -41,7 +41,7 @@ public class PurchaseFeature {
         application.showsOrderTotal("1248.00");
         application.showsOrderedItems(
                 item("11111111", "Male Adult", "599.00"), item("22222222", "Female Adult", "649.00"));
-        application.showsBillingInformation("John", "Doe", "jdoe@gmail.com");
+        application.showsBillingInformation("John", "Doe", "jdoe@gmail.com", "38000", "France");
         application.showsCreditCardDetails("Visa", "XXXX XXXX XXXX 1111");
     }
 

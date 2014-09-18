@@ -105,7 +105,7 @@ public class ApplicationDriver {
         user.loginAs(customer).order().wasPaidUsing(cardType, cardNumber);
     }
 
-    public void showsBillingInformation(String firstName, String lastName, String emailAddress) {
-        user.loginAs(customer).order().isBilledTo(firstName, lastName, emailAddress);
+    public void showsBillingInformation(String firstName, String lastName, String emailAddress, String zipCode, String country) {
+        user.loginAs(customer).order().isBilledTo(firstName, lastName, emailAddress, zipCode, country);
     }
 }

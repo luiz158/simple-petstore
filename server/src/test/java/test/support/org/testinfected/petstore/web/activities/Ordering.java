@@ -41,7 +41,7 @@ public class Ordering {
         petstore.goToReceiptPage(orderNumber).showsCreditCardDetails(cardType, cardNumber);
     }
 
-    public void isBilledTo(String firstName, String lastName, String emailAddress) {
-        petstore.goToReceiptPage(orderNumber).showsBillingInformation(firstName, lastName, emailAddress);
+    public void isBilledTo(String firstName, String lastName, String emailAddress, String zipCode, String country) {
+        petstore.goToReceiptPage(orderNumber).showsBillingInformation(firstName, lastName, emailAddress, zipCode, country);
     }
 }
