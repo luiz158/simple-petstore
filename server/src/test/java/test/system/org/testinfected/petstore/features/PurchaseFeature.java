@@ -36,7 +36,7 @@ public class PurchaseFeature {
         application.buyItem("Golden Retriever", "22222222");
         application.showsTotalToPay(totalPrice);
 
-        application.pay("John", "Doe", "jdoe@gmail.com", "Russia", "Visa", "4111111111111111", "12/12");
+        application.pay("John", "Doe", "jdoe@gmail.com", "38000", "France", "Visa", "4111111111111111", "12/12");
         application.showsCartIsEmpty();
         application.showsOrderTotal("1248.00");
         application.showsOrderedItems(
