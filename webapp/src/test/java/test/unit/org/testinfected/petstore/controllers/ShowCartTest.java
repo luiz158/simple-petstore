@@ -50,7 +50,7 @@ public class ShowCartTest {
 
         showCart.handle(request, response);
         response.assertStatus(HttpStatus.SEE_OTHER);
-        response.assertRedirectedTo("/toto");
+        response.assertRedirectedTo("/");
     }
 
     private Matcher<Object> sameCartAs(Cart cart) {
