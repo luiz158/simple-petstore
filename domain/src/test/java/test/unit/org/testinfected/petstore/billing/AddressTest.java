@@ -26,16 +26,19 @@ public class AddressTest {
                 withFirstName("John").
                 withLastName("Doe").
                 withEmail("jdoe@gmail.com").
+                withZipCode("38000").
                 withCountry("USA").build();
         Address shouldMatch = anAddress().
                 withFirstName("John").
                 withLastName("Doe").
                 withEmail("jdoe@gmail.com").
+                withZipCode("38000").
                 withCountry("USA").build();
         Address shouldNotMatch = anAddress().
                 withFirstName("Jane").
                 withLastName("Doe").
                 withEmail("jdoe@gmail.com").
+                withZipCode("37000").
                 withCountry("Scottland").build();
         assertThat("address", address, equalTo(shouldMatch));
         assertThat("hash code", address.hashCode(), equalTo(shouldMatch.hashCode()));

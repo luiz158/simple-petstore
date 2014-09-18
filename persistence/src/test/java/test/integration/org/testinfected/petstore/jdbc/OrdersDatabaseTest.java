@@ -108,6 +108,7 @@ public class OrdersDatabaseTest {
 
 	private void assertReloadsWithSameState(Order sample) throws Exception {
 		Order found = orderDatabase.find(new OrderNumber(sample.getNumber()));
+
 		assertThat("found by number", found, sameOrderAs(sample));
 	}
 
