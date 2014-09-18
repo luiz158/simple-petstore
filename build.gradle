@@ -64,6 +64,12 @@ dependencies {
     jacoco 'org.jacoco:org.jacoco.ant:0.7.0.201403182114'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+task stage(dependsOn: ['clean', ':server:installApp'])
+
 task coverage(type: JacocoReport) {
     jacocoClasspath = configurations.jacoco
     // Add execution data from all subprojects
