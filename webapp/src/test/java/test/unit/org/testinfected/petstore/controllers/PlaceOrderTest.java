@@ -72,6 +72,7 @@ public class PlaceOrderTest {
     }
 
     @SuppressWarnings("unchecked") @Test public void
+    //@SuppressWarnings("unchecked") public void
     rejectsOrderAndRendersBillWhenPaymentDetailsAreInvalid() throws Exception {
         final BigDecimal total = new BigDecimal("324.98");
         storeInSession(aCart().containing(anItem().priced(total)).build());
@@ -104,6 +105,8 @@ public class PlaceOrderTest {
                 hasProperty("cardExpiryDate", equalTo(payment.getCardExpiryDate())),
                 hasProperty("firstName", equalTo(payment.getFirstName())),
                 hasProperty("lastName", equalTo(payment.getLastName())),
+                hasProperty("street", equalTo(payment.getStreet())),
+                hasProperty("country", equalTo(payment.getCountry())),
                 hasProperty("email", equalTo(payment.getEmail())));
     }
 
@@ -128,6 +131,8 @@ public class PlaceOrderTest {
         request.addParameter("first-name", paymentDetails.getFirstName());
         request.addParameter("last-name", paymentDetails.getLastName());
         request.addParameter("email", paymentDetails.getEmail());
+        request.addParameter("country", paymentDetails.getCountry());
+        request.addParameter("street", paymentDetails.getStreet());
         request.addParameter("card-number", paymentDetails.getCardNumber());
         request.addParameter("card-type", paymentDetails.getCardType().toString());
         request.addParameter("expiry-date", paymentDetails.getCardExpiryDate());
