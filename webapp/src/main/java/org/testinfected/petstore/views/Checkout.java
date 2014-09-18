@@ -66,6 +66,10 @@ public class Checkout {
         return details.getCountry();
     }
 
+    public String getZipCode() {
+        return details.getZipCode();
+    }
+
     public Checkout withErrors(ErrorMessages messages) {
         errors.addAll(messages);
         return this;

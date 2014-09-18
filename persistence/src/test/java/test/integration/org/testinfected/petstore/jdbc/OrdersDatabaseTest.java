@@ -88,6 +88,7 @@ public class OrdersDatabaseTest {
 										.withFirstName("Denis")
 										.withLastName("Boisset")
 										.withEmail("denis.boisset@orange.com")
+                                        .withZipCode("38000")
 										.withCountry("France")))
 		);
 

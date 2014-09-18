@@ -24,9 +24,10 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
     private final Column<String> billingFirstName;
     private final Column<String> billingLastName;
     private final Column<String> billingEmail;
+    private final Column<String> billingZipCode;
     private final Column<String> billingCountry;
 
-    public PaymentRecord(Column<Long> id, Column<String> paymentType, Column<String> cardType, Column<String> cardNumber, Column<String> cardExpiryDate, Column<String> billingFirstName, Column<String> billingLastName, Column<String> billingEmail, Column<String> billingCountry) {
+    public PaymentRecord(Column<Long> id, Column<String> paymentType, Column<String> cardType, Column<String> cardNumber, Column<String> cardExpiryDate, Column<String> billingFirstName, Column<String> billingLastName, Column<String> billingEmail,Column<String>billingZipCode,  Column<String> billingCountry) {
         this.id = id;
         this.paymentType = paymentType;
         this.cardType = cardType;
@@ -35,6 +36,7 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
         this.billingFirstName = billingFirstName;
         this.billingLastName = billingLastName;
         this.billingEmail = billingEmail;
+        this.billingZipCode = billingZipCode;
         this.billingCountry = billingCountry;
     }
 
@@ -44,8 +46,7 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
 
         CreditCardDetails creditCard = new CreditCardDetails(
                 CreditCardType.valueOf(cardType.get(rs)), cardNumber.get(rs), cardExpiryDate.get(rs),
-                //TODO : fill with zip code
-                new Address(billingFirstName.get(rs), billingLastName.get(rs), billingEmail.get(rs),"",billingCountry.get(rs))
+                new Address(billingFirstName.get(rs), billingLastName.get(rs), billingEmail.get(rs), billingZipCode.get(rs), billingCountry.get(rs))
         );
         idOf(creditCard).set(id.get(rs));
         return creditCard;
@@ -58,7 +59,9 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
         billingFirstName.set(st, creditCard.getFirstName());
         billingLastName.set(st, creditCard.getLastName());
         billingEmail.set(st, creditCard.getEmail());
+        billingZipCode.set(st, creditCard.getZipCode());
         billingCountry.set(st, creditCard.getCountry());
+
         cardType.set(st, creditCard.getCardType().name());
         cardNumber.set(st, creditCard.getCardNumber());
         cardExpiryDate.set(st, creditCard.getCardExpiryDate());
