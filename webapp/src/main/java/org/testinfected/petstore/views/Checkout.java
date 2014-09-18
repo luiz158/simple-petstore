@@ -62,6 +62,10 @@ public class Checkout {
         return details.getLastName();
     }
 
+    public String getCountry() {
+        return details.getCountry();
+    }
+
     public Checkout withErrors(ErrorMessages messages) {
         errors.addAll(messages);
         return this;
