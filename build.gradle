@@ -1,11 +1,15 @@
 allprojects {
   apply plugin: 'java'
+  apply plugin: 'application'
 
   group = 'org.testinfected.petstore'
   version = '0.2-SNAPSHOT'
 
   repositories {
     mavenCentral()
+  }
+  test {
+      testLogging.exceptionFormat ="full"
   }
 }
 
