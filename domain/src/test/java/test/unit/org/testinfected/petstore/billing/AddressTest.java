@@ -18,6 +18,8 @@ public class AddressTest {
 
     String MISSING = null;
 
+    String BLANK = "   \t";
+
     @Test public void
     addressesMatchWhenAllPropertiesMatch() {
         Address address = anAddress().
@@ -52,7 +54,12 @@ public class AddressTest {
 
     @Test public void
     isInvalidWithoutACountry() {
-        assertThat("validation of address with missing country", validationOf(anAddress().withCountry(MISSING)), violates(on("country"), withMessage("missing")));
+        assertThat("validation of address with missing country", validationOf(anAddress().withCountry(MISSING)), violates(on("country"), withMessage("empty")));
+    }
+
+    @Test public void
+    isInvalidWithABlankCountry() {
+        assertThat("validation of address with empty country", validationOf(anAddress().withCountry(BLANK)), violates(on("country"), withMessage("empty")));
     }
     
     @Test public void

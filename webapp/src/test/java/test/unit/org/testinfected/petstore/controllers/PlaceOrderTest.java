@@ -104,7 +104,8 @@ public class PlaceOrderTest {
                 hasProperty("cardExpiryDate", equalTo(payment.getCardExpiryDate())),
                 hasProperty("firstName", equalTo(payment.getFirstName())),
                 hasProperty("lastName", equalTo(payment.getLastName())),
-                hasProperty("email", equalTo(payment.getEmail())));
+                hasProperty("email", equalTo(payment.getEmail())),
+                hasProperty("country", equalTo(payment.getCountry())));
     }
 
     private Matcher<Object> billWithErrors(Matcher<? super ErrorMessages>... messages) {

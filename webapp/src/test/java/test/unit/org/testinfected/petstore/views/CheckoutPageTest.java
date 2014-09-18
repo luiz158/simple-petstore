@@ -74,7 +74,7 @@ public class CheckoutPageTest {
         errors.add("paymentDetails", "invalid.paymentDetails");
         errors.add("paymentDetails.cardNumber", "empty.paymentDetails.cardNumber");
         errors.add("paymentDetails.cardNumber", "incorrect.paymentDetails.cardNumber");
-
+        errors.add("paymentDetails.billingAddress.country", "empty.paymentDetails.billingAddress.country");
         checkoutPage = renderCheckoutPage().with(checkout.withErrors(errors)).asDom();
 
         assertThat("payment errors", checkoutPage, hasSelector(".errors", allOf(hasChild(
@@ -82,13 +82,18 @@ public class CheckoutPageTest {
         )));
         assertThat("card number errors", checkoutPage, hasSelector(".errors", allOf(hasChild(
                 hasText("empty.paymentDetails.cardNumber")), hasChild(hasText("incorrect.paymentDetails.cardNumber")))));
+
+        assertThat("country errors", checkoutPage, hasSelector(".errors", allOf(hasChild(
+                hasText("empty.paymentDetails.billingAddress.country")))));
     }
+
+
 
     @SuppressWarnings("unchecked")
     @Test public void
     restoresFormValues() throws Exception {
         AddressBuilder billingAddress = anAddress().
-                withFirstName("Jack").withLastName("Johnson").withEmail("jack@gmail.com");
+                withFirstName("Jack").withLastName("Johnson").withEmail("jack@gmail.com").withCountry("France");
         CreditCardDetails paymentDetails = aVisa().
                 withNumber("4111111111111111").
                 withExpiryDate("2015-10-10").
@@ -96,7 +101,7 @@ public class CheckoutPageTest {
 
         checkoutPage = renderCheckoutPage().with(checkout.withPayment(paymentDetails)).asDom();
 
-        assertThat("billing information", checkoutPage, hasCheckoutForm(hasBillingInformation("Jack", "Johnson", "jack@gmail.com", "")));
+        assertThat("billing information", checkoutPage, hasCheckoutForm(hasBillingInformation("Jack", "Johnson", "jack@gmail.com", "France")));
         assertThat("payment information", checkoutPage, hasCheckoutForm(hasCreditCardDetails(CreditCardType.visa, "4111111111111111", "2015-10-10")));
     }
 
