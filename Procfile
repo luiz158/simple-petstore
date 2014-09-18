@@ -1,0 +1,1 @@
+web: ./build/install/petstore/bin/petstore -e db4free
