@@ -9,7 +9,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `photo_file_name`, `number`
 (23, 'Husky', 'Perfect winter jogging partner', 'husky.jpg', '45454545'),
 (24, 'Chef', 'Chef a vendre', 'chef.jpg', 66666666),
 (25, 'Bougon', 'Raleur marrant', 'bougon.jpg', 66666667),
-(26, 'Boucle d\'or', 'Experte réveil', 'boucle.jpg', 66666668);
+(26, 'Boucle d\'or', 'Experte reveil', 'boucle.jpg', 66666668);
 
 
 
