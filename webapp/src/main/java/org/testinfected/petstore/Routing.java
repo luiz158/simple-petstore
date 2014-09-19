@@ -6,6 +6,9 @@ import com.vtence.molecule.Response;
 import com.vtence.molecule.middlewares.ConnectionScope;
 import com.vtence.molecule.middlewares.Router;
 import com.vtence.molecule.routing.DynamicRoutes;
+
+import org.testinfected.petstore.controllers.About;
+import org.testinfected.petstore.controllers.CreateMembers;
 import org.testinfected.petstore.controllers.ProceedToCheckout;
 import org.testinfected.petstore.controllers.CreateCartItem;
 import org.testinfected.petstore.controllers.CreateItem;
@@ -40,6 +43,7 @@ import java.util.ResourceBundle;
 public class Routing implements Application {
 
     private final Pages pages;
+    private final Members members = new Members();
 
     public Routing(final Pages pages) {
         this.pages = pages;
@@ -68,6 +72,8 @@ public class Routing implements Application {
             get("/orders/:number").to(new ShowOrder(orders, pages.order()));
             post("/orders").to(new PlaceOrder(cashier, pages.checkout(), messages));
             delete("/logout").to(new Logout());
+            get("/about").to(new About(members, pages.about()));
+			post("/members").to(new CreateMembers(members));
             map("/").to(new StaticView(pages.home()));
         }});
 

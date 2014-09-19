@@ -9,6 +9,7 @@ import test.support.org.testinfected.petstore.web.WebServer;
 import static java.lang.String.valueOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.openqa.selenium.By.cssSelector;
+import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.id;
 
 public class PetStore {
@@ -83,6 +84,11 @@ public class PetStore {
     public ReceiptPage goToReceiptPage(String orderNumber) {
         browser.navigate().to(url("/orders/" + orderNumber));
         return new ReceiptPage(browser);
+    }
+    
+    public AboutPage goToAboutPage() {
+    	browser.element(className("about")).click();
+    	return new AboutPage(browser);
     }
 
     public AdministrationAPI administrate() {

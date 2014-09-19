@@ -19,4 +19,8 @@ public class StoreManagement {
     public void addItem(String productNumber, String itemNumber, String itemDescription, String itemPrice) throws IOException {
         petstore.administrate().addItem(productNumber, itemNumber, itemDescription, itemPrice);
     }
+
+	public void addMembers(String members) throws IOException {
+		 petstore.administrate().addMembers(members);
+	}
 }

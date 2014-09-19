@@ -8,6 +8,7 @@ public class User {
     private final CartManagement cart;
     private final StoreManagement store;
     private final Ordering order;
+    private final Discovering discovery;
 
     public User(PetStore petstore) {
         this.petstore = petstore;
@@ -15,6 +16,7 @@ public class User {
         this.cart = new CartManagement(petstore);
         this.store = new StoreManagement(petstore);
         this.order = new Ordering(petstore);
+        this.discovery= new Discovering(petstore);
     }
 
     public User loginAs(String username) {
@@ -54,4 +56,8 @@ public class User {
     public void cartItemCountIs(int count) {
         petstore.displaysCartItemCount(count);
     }
+
+	public Discovering discover() {
+		return discovery;
+	}
 }

@@ -108,4 +108,13 @@ public class ApplicationDriver {
     public void showsBillingInformation(String firstName, String lastName, String emailAddress, String zipCode, String country) {
         user.loginAs(customer).order().isBilledTo(firstName, lastName, emailAddress, zipCode, country);
     }
+
+	public void showsTeamMembers(String... members) {
+		user.loginAs(customer).discover().teamMembersAre(members);
+	}
+
+	public void injectMembers(String members) throws IOException {
+		user.loginAs(admin).manageStore().addMembers(members);
+		
+	}
 }

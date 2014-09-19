@@ -1,6 +1,7 @@
 package test.support.org.testinfected.petstore.web;
 
 import com.gargoylesoftware.htmlunit.HttpMethod;
+import com.vtence.molecule.http.HttpStatus;
 import com.vtence.molecule.support.HttpRequest;
 import com.vtence.molecule.support.HttpResponse;
 
@@ -40,4 +41,15 @@ public class AdministrationAPI {
         HttpResponse response = post.send();
         response.assertHasStatusMessage(CREATED);
     }
+
+	public void addMembers(String members) throws IOException {
+		HttpRequest post = request.but().withTimeout(50000)
+                .usingMethod(HttpMethod.POST)
+                .on("/members")
+                .withParameter("members", members);
+
+        HttpResponse response = post.send();
+        response.assertHasStatus(HttpStatus.CREATED);
+		
+	}
 }

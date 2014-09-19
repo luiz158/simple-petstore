@@ -3,9 +3,10 @@ package test.unit.org.testinfected.petstore.views;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
+import org.testinfected.hamcrest.dom.HasAttribute;
 import org.w3c.dom.Element;
-import test.support.org.testinfected.petstore.web.WebRoot;
 
+import test.support.org.testinfected.petstore.web.WebRoot;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testinfected.hamcrest.dom.DomMatchers.anElement;
 import static org.testinfected.hamcrest.dom.DomMatchers.hasAttribute;
@@ -30,6 +31,12 @@ public class FooterTest {
         assertThat("footer", footer, hasLogoutForm(hasChildren(
                 anElement(hasTag("input"), hasAttribute("type", "hidden"), hasAttribute("name", "_method"), hasAttribute("value", "delete")),
                 anElement(hasTag("button")))));
+    }
+    
+    @Test public void
+    containsALinkToAboutPage()
+    {
+    	assertThat("footer", footer, hasSelector("a.about", hasAttribute("href","/about")));
     }
 
     private Matcher<Element> hasLogoutForm(Matcher<Element>... formMatchers) {

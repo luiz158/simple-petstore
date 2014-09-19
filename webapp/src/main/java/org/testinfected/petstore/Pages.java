@@ -3,6 +3,7 @@ package org.testinfected.petstore;
 import com.vtence.molecule.Response;
 import com.vtence.molecule.templating.RenderingEngine;
 import com.vtence.molecule.templating.Templates;
+
 import org.testinfected.petstore.order.Cart;
 import org.testinfected.petstore.order.Order;
 import org.testinfected.petstore.views.AvailableItems;
@@ -43,6 +44,11 @@ public class Pages {
         return page("order");
     }
 
+
+	public View<Members> about() {
+		return page("about");
+	}
+	
     private <T> View<T> page(final String template) {
         return new View<T>() {
             public void render(Response response, T context) throws IOException {
@@ -51,4 +57,5 @@ public class Pages {
             }
         };
     }
+
 }
