@@ -9,6 +9,7 @@ allprojects {
   }
 }
 
+
 ext {
   libs = [
           mysql             : 'mysql:mysql-connector-java:5.1.21',
@@ -64,6 +65,12 @@ dependencies {
     jacoco 'org.jacoco:org.jacoco.ant:0.7.0.201403182114'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+task stage(dependsOn: [ 'clean', 'db-migrate', 'db-populate', ':server:installApp'])
+
 task coverage(type: JacocoReport) {
     jacocoClasspath = configurations.jacoco
     // Add execution data from all subprojects
@@ -86,12 +93,24 @@ task coverage(type: JacocoReport) {
     }
 }
 
+loadEnvironmentConfiguration()
+def loadEnvironmentConfiguration(){
+    if (!project.hasProperty('env')) {
+        if(System.getenv('GRADLE_BUILD') != null)
+            ext.env = System.getenv('GRADLE_BUILD')
+        else
+            ext.env = 'development'
+
+    }else
+        ext.env = project.env
+    println 'ext.env set to ' + ext.env.toString()
+}
+
+
 apply plugin: 'application'
 mainClassName = 'org.testinfected.petstore.Launcher'
 
-if (!project.hasProperty('env')) {
-  ext.env = 'development'
-}
+
 
 run {
   classpath = project(':server').sourceSets.main.runtimeClasspath
@@ -139,4 +158,10 @@ task 'db-reset'(type: JavaExec) {
   main = 'org.testinfected.petstore.Migrations'
   classpath = project(':server').sourceSets.main.runtimeClasspath
   args = ['-e', env, 'reset']
+}
+
+task 'db-populate'(type: JavaExec) {
+    main = 'org.testinfected.petstore.Migrations'
+    classpath = project(':server').sourceSets.main.runtimeClasspath
+    args = ['-e', env, 'populate']
 }

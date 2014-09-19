@@ -20,6 +20,7 @@ public class PaymentForm extends Form {
                         request.parameter("first-name"),
                         request.parameter("last-name"),
                         request.parameter("email"),
+                        request.parameter("zip-code"),
                         request.parameter("country"))));
     }
 

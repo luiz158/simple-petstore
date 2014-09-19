@@ -11,12 +11,15 @@ public class Address implements Serializable {
     private final NotNull<String> firstName;
     private final NotNull<String> lastName;
     private final String emailAddress;
+
+    private final String zipCode;
 	private final NotEmpty country;
 
-	public Address(String firstName, String lastName, String emailAddress, String country) {
+	public Address(String firstName, String lastName, String emailAddress, String zipCode, String country) {
 		this.firstName = Validates.notNull(firstName);
         this.lastName = Validates.notNull(lastName);
         this.emailAddress = emailAddress;
+        this.zipCode = zipCode;
         this.country = Validates.notEmpty(country);
     }
 
@@ -32,6 +35,10 @@ public class Address implements Serializable {
         return emailAddress;
     }
 
+    public String getZipCode() {
+        return zipCode;
+    }
+
     public String getCountry() {
     	return country.get();
     }
@@ -45,6 +52,7 @@ public class Address implements Serializable {
 
         if (!firstName.equals(address.firstName)) return false;
         if (!lastName.equals(address.lastName)) return false;
+        if (zipCode == null && address.zipCode != null || zipCode != null && !zipCode.equals(address.zipCode)) return false;
         if (!country.equals(address.country)) return false;
         if (emailAddress != null ? !emailAddress.equals(address.emailAddress) : address.emailAddress != null)
             return false;
@@ -57,6 +65,7 @@ public class Address implements Serializable {
         int result = firstName.hashCode();
         result = 31 * result + lastName.hashCode();
         result = 31 * result + (emailAddress != null ? emailAddress.hashCode() : 0);
+        result = 31 * result + (zipCode != null ? zipCode.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
     }

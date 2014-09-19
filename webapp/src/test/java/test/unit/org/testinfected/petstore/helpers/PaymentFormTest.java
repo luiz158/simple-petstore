@@ -24,7 +24,11 @@ public class PaymentFormTest {
 
     private String email = "john.doe@gmail.com";
 
+    private String zipCode = "77000";
+
     private String country = "Brasil";
+
+
 
     private MockRequest request;
     @Before
@@ -36,6 +40,7 @@ public class PaymentFormTest {
         request.addParameter("first-name", firstName);
         request.addParameter("last-name", lastName);
         request.addParameter("email", email);
+        request.addParameter("zip-code", zipCode);
         request.addParameter("country", country);
 
 
@@ -53,6 +58,7 @@ public class PaymentFormTest {
         Assert.assertEquals("First name differs", firstName, details.getFirstName());
         Assert.assertEquals("Last name differs", lastName, details.getLastName());
         Assert.assertEquals("Email differs", email, details.getEmail());
+        Assert.assertEquals("Zip Code differs", zipCode, details.getZipCode());
         Assert.assertEquals("Country differs", country, details.getCountry());
     }
 }
