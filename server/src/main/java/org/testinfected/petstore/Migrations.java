@@ -47,6 +47,14 @@ public class Migrations {
         flyway.init();
     }
 
+    private void executeStatement(Connection connection, String query)throws SQLException{
+        try (Statement statement = connection.createStatement()) {
+            // Execute statement
+            LOG.info("executeStatement - "+query);
+            statement.execute(query);
+        }
+    }
+
     public void populate(File file) throws SQLException, IOException{
         if(!file.isFile())
             throw new FileNotFoundException(file.getPath());
@@ -54,21 +62,33 @@ public class Migrations {
         Connection connection = dataSource.getConnection();
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             String line;
-            while((line = reader.readLine()) != null)
-                LOG.info(line);
-        }
-        try (Scanner scanner = new Scanner(file).useDelimiter(delimiter)) {
+            StringBuilder sb = new StringBuilder();
             int cpt = 0;
-            while(scanner.hasNext()) {
-                String rawStatement = scanner.next() + delimiter;
-                cpt++;
-                try (Statement statement = connection.createStatement()) {
-                    // Execute statement
-                    statement.execute(rawStatement);
+            while(((line = reader.readLine()) != null)){
+                //treat remaining
+                while (line != null){
+                    int delimiterIndex = line.indexOf(delimiter);
+                    if(delimiterIndex == -1){
+                        sb.append(line);
+                        line = null;
+                    }else{
+                        sb.append(line.substring(0, delimiterIndex + 1));
+                        if((delimiterIndex+2) < line.length())
+                            line = line.substring(delimiterIndex+2);
+                        else
+                            line = null;
+                        executeStatement(connection, sb.toString());
+                        cpt++;
+                        sb = new StringBuilder();
+
+                    }
                 }
             }
-            connection.commit();
-            LOG.info(Integer.toString(cpt)+" statements loaded");
+            if(sb.length() > 0){
+                executeStatement(connection, sb.toString());
+                cpt++;
+            }
+            LOG.info("Number of statements executed : "+cpt);
         }catch(Exception e){
             connection.rollback();
             throw e;
