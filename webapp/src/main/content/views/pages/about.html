@@ -7,19 +7,26 @@
 <table id="contacts" cellpadding="5">
 
     <tr>
-        <td><img  src="/photos/bene.gif" onMouseOver="this.src='/photos/benehover.gif'"/></td>
+        <td><img  src="/photos/bene.gif"  onMouseOver="this.src='/photos/benehover.gif'" onmouseout="this.src='/photos/bene.gif'"/></td>
+
         <td>Bénédicte</td>
         <td>Experte GIT</td>
     </tr>
 
     <tr>
-        <td><img src="/photos/vincent.gif"/></td>
+        <td><img src="/photos/vincent.gif" onclick="this.src='/photos/pogona.gif'" onmouseout="this.src='/photos/vincent.gif'"/></td>
         <td>Vincent</td>
         <td>Expert en séduction</td>
     </tr>
 
     <tr>
-        <td><img src="/photos/rene.gif"/></td>
+        <td>
+            <img src="/photos/rene.gif" onMouseOver="document.getElementById('video1').style.visibility='visible';document.getElementById('video1').style.display='block';this.style.visibility='hidden';document.getElementById('video1').play();"/>
+            <video id="video1" controls="controls" style="visibility: hidden;display: none;">
+                <source src="/photos/mov_bbb.mp4" type="video/mp4">
+                <source src="/photos/mov_bbb.ogg" type="video/ogg">
+            </video>
+        </td>
         <td>René</td>
         <td>Si j'avais un marteau</td>
     </tr>
