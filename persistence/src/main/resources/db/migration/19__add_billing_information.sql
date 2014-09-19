@@ -1,1 +1,1 @@
-alter table orders add column billing_country  varchar(255);
+alter table orders add column billing_zip_code  varchar(255);
