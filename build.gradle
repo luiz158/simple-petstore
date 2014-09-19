@@ -98,7 +98,7 @@ if (!project.hasProperty('env')) {
 
 task setEnvProduction() {
     if(project.hasProperty('env')){
-        print 'setting project environment'
+        print 'setting project environment from ' + project.env.toString()
         project.env = 'production'
     }
     print 'setting ext environment from' + env.toString() + 'to production'
