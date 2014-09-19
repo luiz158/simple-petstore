@@ -77,7 +77,7 @@ public class Migrations {
 
     public static void main(String... args) throws Exception {
         try {
-            LOG.info("main - start");
+            LOG.info("main - start with environment "+args[ENVIRONMENT]);
             Environment env = Environment.load(args[ENVIRONMENT]);
             LOG.info("main - connecting on"+env.databaseUsername+"@"+ env.databaseUrl);
             DataSource dataSource = new DriverManagerDataSource(env.databaseUrl, env.databaseUsername, env.databasePassword);

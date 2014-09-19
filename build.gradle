@@ -92,16 +92,23 @@ task coverage(type: JacocoReport) {
     }
 }
 
+if (!project.hasProperty('env')) {
+    ext.env = 'development'
+}
+
 task setEnvProduction() {
-    ext.env = 'production'
+    if(project.hasProperty('env')){
+        print 'setting project environment'
+        project.env = 'production'
+    }
+    print 'setting ext environment from' + env.toString() + 'to production'
+    env = 'production'
 }
 
 apply plugin: 'application'
 mainClassName = 'org.testinfected.petstore.Launcher'
 
-if (!project.hasProperty('env')) {
-  ext.env = 'development'
-}
+
 
 run {
   classpath = project(':server').sourceSets.main.runtimeClasspath
