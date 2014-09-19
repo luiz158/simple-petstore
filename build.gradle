@@ -9,6 +9,7 @@ allprojects {
   }
 }
 
+
 ext {
   libs = [
           mysql             : 'mysql:mysql-connector-java:5.1.21',
@@ -68,7 +69,7 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.1'
 }
 
-task stage(dependsOn: ['setEnvProduction', 'clean', 'db-migrate', 'db-populate', ':server:installApp'])
+task stage(dependsOn: [ 'clean', 'db-migrate', 'db-populate', ':server:installApp'])
 
 task coverage(type: JacocoReport) {
     jacocoClasspath = configurations.jacoco
@@ -92,18 +93,19 @@ task coverage(type: JacocoReport) {
     }
 }
 
-if (!project.hasProperty('env')) {
-    ext.env = 'development'
+loadEnvironmentConfiguration()
+def loadEnvironmentConfiguration(){
+    if (!project.hasProperty('env')) {
+        if(System.getenv('GRADLE_BUILD') != null)
+            ext.env = System.getenv('GRADLE_BUILD')
+        else
+            ext.env = 'development'
+
+    }else
+        ext.env = project.env
+    println 'ext.env set to ' + ext.env.toString()
 }
 
-task setEnvProduction() {
-    if(project.hasProperty('env')){
-        print 'setting project environment from ' + project.env.toString()
-        project.env = 'production'
-    }
-    print 'setting ext environment from' + env.toString() + 'to production'
-    env = 'production'
-}
 
 apply plugin: 'application'
 mainClassName = 'org.testinfected.petstore.Launcher'
