@@ -93,7 +93,7 @@ public class CheckoutPageTest {
     @Test public void
     restoresFormValues() throws Exception {
         AddressBuilder billingAddress = anAddress().
-                withFirstName("Jack").withLastName("Johnson").withEmail("jack@gmail.com").withCountry("France");
+                withFirstName("Jack").withLastName("Johnson").withEmail("jack@gmail.com").withZipCode("38000").withCountry("France");
         CreditCardDetails paymentDetails = aVisa().
                 withNumber("4111111111111111").
                 withExpiryDate("2015-10-10").
@@ -101,7 +101,7 @@ public class CheckoutPageTest {
 
         checkoutPage = renderCheckoutPage().with(checkout.withPayment(paymentDetails)).asDom();
 
-        assertThat("billing information", checkoutPage, hasCheckoutForm(hasBillingInformation("Jack", "Johnson", "jack@gmail.com", "", "France")));
+        assertThat("billing information", checkoutPage, hasCheckoutForm(hasBillingInformation("Jack", "Johnson", "jack@gmail.com", "38000", "France")));
         assertThat("payment information", checkoutPage, hasCheckoutForm(hasCreditCardDetails(CreditCardType.visa, "4111111111111111", "2015-10-10")));
     }
 

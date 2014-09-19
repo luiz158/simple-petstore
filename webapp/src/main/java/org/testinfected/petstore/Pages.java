@@ -14,48 +14,46 @@ import java.io.IOException;
 
 public class Pages {
 
-    private final Templates templates;
+	private final Templates templates;
 
-    public Pages(Templates templates) {
-        this.templates = templates;
-    }
+	public Pages(Templates templates) {
+		this.templates = templates;
+	}
 
-    public View<Checkout> checkout() {
-        return page("checkout");
-    }
+	public View<Checkout> checkout() {
+		return page("checkout");
+	}
 
-    public View<AvailableItems> items() {
-        return page("items");
-    }
+	public View<AvailableItems> items() {
+		return page("items");
+	}
 
-    public View<Products> products() {
-        return page("products");
-    }
+	public View<Products> products() {
+		return page("products");
+	}
 
-    public View<Cart> cart() {
-        return page("cart");
-    }
+	public View<Cart> cart() {
+		return page("cart");
+	}
 
-    public View<Void> home() {
-        return page("home");
-    }
+	public View<Void> home() {
+		return page("home");
+	}
 
-    public View<Order> order() {
-        return page("order");
-    }
-
+	public View<Order> order() {
+		return page("order");
+	}
 
 	public View<Members> about() {
 		return page("about");
 	}
-	
-    private <T> View<T> page(final String template) {
-        return new View<T>() {
-            public void render(Response response, T context) throws IOException {
-                response.contentType("text/html; charset=utf-8");
-                response.body(templates.named(template).render(context));
-            }
-        };
-    }
 
+	private <T> View<T> page(final String template) {
+		return new View<T>() {
+			public void render(Response response, T context) throws IOException {
+				response.contentType("text/html; charset=utf-8");
+				response.body(templates.named(template).render(context));
+			}
+		};
+	}
 }

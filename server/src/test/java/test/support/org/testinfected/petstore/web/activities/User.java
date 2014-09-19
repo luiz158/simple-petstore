@@ -9,6 +9,7 @@ public class User {
     private final StoreManagement store;
     private final Ordering order;
     private final Discovering discovery;
+    private final AboutBrowsing about;
 
     public User(PetStore petstore) {
         this.petstore = petstore;
@@ -17,6 +18,7 @@ public class User {
         this.store = new StoreManagement(petstore);
         this.order = new Ordering(petstore);
         this.discovery= new Discovering(petstore);
+        this.about = new AboutBrowsing(petstore);
     }
 
     public User loginAs(String username) {
@@ -60,4 +62,8 @@ public class User {
 	public Discovering discover() {
 		return discovery;
 	}
+
+	public AboutBrowsing about() {
+        return about;
+    }
 }
