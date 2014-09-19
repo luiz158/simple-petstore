@@ -92,4 +92,8 @@ public class PetStore {
     private String url(String path) {
         return "http://localhost:" + server.getPort() + path;
     }
+
+    public void goToAboutPage() {
+        browser.element(id("about")).click();
+    }
 }

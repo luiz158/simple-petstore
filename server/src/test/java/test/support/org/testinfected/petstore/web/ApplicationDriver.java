@@ -1,11 +1,14 @@
 package test.support.org.testinfected.petstore.web;
 
 import test.support.org.testinfected.petstore.web.activities.User;
+import test.support.org.testinfected.petstore.web.page.CheckoutPage;
 import test.support.org.testinfected.petstore.web.page.PetStore;
 import test.system.org.testinfected.petstore.features.Item;
 import test.system.org.testinfected.petstore.features.Product;
 
 import java.io.IOException;
+
+import static org.openqa.selenium.By.cssSelector;
 
 public class ApplicationDriver {
 
@@ -107,5 +110,12 @@ public class ApplicationDriver {
 
     public void showsBillingInformation(String firstName, String lastName, String emailAddress) {
         user.loginAs(customer).order().isBilledTo(firstName, lastName, emailAddress);
+    }
+
+    public void showsTextInAboutPage(String text) {
+        user.loginAs(customer).about();
+           // browser.element(cssSelector(".actions .confirm a")).click();
+         //   return new CheckoutPage(browser);
+
     }
 }
