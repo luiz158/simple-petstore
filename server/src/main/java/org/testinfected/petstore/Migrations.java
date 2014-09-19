@@ -89,6 +89,7 @@ public class Migrations {
                 cpt++;
             }
             LOG.info("Number of statements executed : "+cpt);
+            connection.commit();
         }catch(Exception e){
             connection.rollback();
             throw e;
