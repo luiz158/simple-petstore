@@ -79,7 +79,7 @@ public class Migrations {
         try {
             LOG.info("main - start");
             Environment env = Environment.load(args[ENVIRONMENT]);
-
+            LOG.info("main - connecting on"+env.databaseUsername+"@"+ env.databaseUrl);
             DataSource dataSource = new DriverManagerDataSource(env.databaseUrl, env.databaseUsername, env.databasePassword);
             Migrations migrations = new Migrations(dataSource);
             String action = args[ACTION];
