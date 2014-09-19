@@ -29,6 +29,7 @@ public class About {
     @Test
     public void verifyAboutPage() throws IOException {
 
-        application.showsTextInAboutPage("text");
+        application.showsImageInAboutPage();
+
     }
 }

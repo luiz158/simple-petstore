@@ -51,4 +51,7 @@ public class Pages {
             }
         };
     }
+
+    public View<Void> about() { return page("about");
+    }
 }

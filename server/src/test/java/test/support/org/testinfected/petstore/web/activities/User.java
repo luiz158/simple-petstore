@@ -8,6 +8,7 @@ public class User {
     private final CartManagement cart;
     private final StoreManagement store;
     private final Ordering order;
+    private final AboutBrowsing about;
 
     public User(PetStore petstore) {
         this.petstore = petstore;
@@ -15,6 +16,7 @@ public class User {
         this.cart = new CartManagement(petstore);
         this.store = new StoreManagement(petstore);
         this.order = new Ordering(petstore);
+        this.about = new AboutBrowsing(petstore);
     }
 
     public User loginAs(String username) {
@@ -55,7 +57,7 @@ public class User {
         petstore.displaysCartItemCount(count);
     }
 
-    public void about() {
-        petstore.goToAboutPage();
+    public AboutBrowsing about() {
+        return about;
     }
 }

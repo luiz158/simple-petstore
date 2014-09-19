@@ -112,8 +112,8 @@ public class ApplicationDriver {
         user.loginAs(customer).order().isBilledTo(firstName, lastName, emailAddress);
     }
 
-    public void showsTextInAboutPage(String text) {
-        user.loginAs(customer).about();
+    public void showsImageInAboutPage() {
+        user.loginAs(customer).about().showImage();
            // browser.element(cssSelector(".actions .confirm a")).click();
          //   return new CheckoutPage(browser);
 
