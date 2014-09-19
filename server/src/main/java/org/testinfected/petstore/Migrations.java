@@ -52,6 +52,11 @@ public class Migrations {
             throw new FileNotFoundException(file.getPath());
         final String delimiter = ";";
         Connection connection = dataSource.getConnection();
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+            String line;
+            while((line = reader.readLine()) != null)
+                LOG.info(line);
+        }
         try (Scanner scanner = new Scanner(file).useDelimiter(delimiter)) {
             int cpt = 0;
             while(scanner.hasNext()) {
