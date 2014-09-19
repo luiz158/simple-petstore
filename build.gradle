@@ -68,7 +68,7 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.1'
 }
 
-task stage(dependsOn: ['clean', 'db-migrate', 'db-populate', ':server:installApp'])
+task stage(dependsOn: ['setEnvProduction', 'clean', 'db-migrate', 'db-populate', ':server:installApp'])
 
 task coverage(type: JacocoReport) {
     jacocoClasspath = configurations.jacoco
@@ -90,6 +90,10 @@ task coverage(type: JacocoReport) {
             destination "build/reports/jacoco/test/html"
         }
     }
+}
+
+task setEnvProduction() {
+    ext.env = 'production'
 }
 
 apply plugin: 'application'
