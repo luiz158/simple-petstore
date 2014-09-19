@@ -89,8 +89,8 @@ public class ApplicationDriver {
         user.loginAs(customer).order().amountsTo(amount);
     }
 
-    public void pay(String firstName, String lastName, String email, String street, String cardType, String cardNumber, String cardExpiryDate) {
-        user.loginAs(customer).order().confirm(firstName, lastName, email, street, cardType, cardNumber, cardExpiryDate);
+    public void pay(String firstName, String lastName, String email, String street,String zipCode, String cardType, String cardNumber, String cardExpiryDate) {
+        user.loginAs(customer).order().confirm(firstName, lastName, email, street, zipCode, cardType, cardNumber, cardExpiryDate);
     }
 
     public void showsOrderTotal(String total) {
@@ -105,7 +105,7 @@ public class ApplicationDriver {
         user.loginAs(customer).order().wasPaidUsing(cardType, cardNumber, cardExpiryDate);
     }
 
-    public void showsBillingInformation(String firstName, String lastName, String emailAddress, String street) {
-        user.loginAs(customer).order().isBilledTo(firstName, lastName, emailAddress, street);
+    public void showsBillingInformation(String firstName, String lastName, String emailAddress, String street, String zipCode) {
+        user.loginAs(customer).order().isBilledTo(firstName, lastName, emailAddress, street,zipCode);
     }
 }

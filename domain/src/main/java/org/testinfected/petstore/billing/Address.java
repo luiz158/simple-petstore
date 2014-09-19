@@ -11,21 +11,23 @@ public class Address implements Serializable {
     private final String emailAddress;
     private final String street;
     private String country;
+    private String zipCode;
 
     public Address(String firstName, String lastName, String emailAddress) {
-        this(firstName, lastName, emailAddress, null, null);
+        this(firstName, lastName, emailAddress, null, null,null);
     }
 
     public Address(String firstName, String lastName, String emailAddress, String country) {
-        this(firstName, lastName, emailAddress, country, null);
+        this(firstName, lastName, emailAddress, country, null,null);
     }
 
-    public Address(String firstName, String lastName, String emailAddress, String country,String street) {
+    public Address(String firstName, String lastName, String emailAddress, String country,String street,String zipCode) {
         this.firstName = Validates.notNull(firstName);
         this.lastName = Validates.notNull(lastName);
         this.emailAddress = emailAddress;
         this.country = country;
         this.street = street;
+        this.zipCode = zipCode;
     }
 
     public String getFirstName() {
@@ -72,5 +74,8 @@ public class Address implements Serializable {
 
     public String getStreet() {
         return street;
+    }
+    public String getZipCode(){
+        return zipCode;
     }
 }

@@ -64,7 +64,8 @@ public final class Schema {
                 schema.STRING("billing_last_name"),
                 schema.STRING("billing_email"),
                 schema.STRING("billing_country"),
-                schema.STRING("billing_street"))
+                schema.STRING("billing_street"),
+                schema.STRING("billing_zip_code"))
         );
     }
 

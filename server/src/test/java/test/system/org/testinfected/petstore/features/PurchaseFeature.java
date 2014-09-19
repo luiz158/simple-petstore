@@ -28,6 +28,7 @@ public class PurchaseFeature {
         application.stop();
     }
 
+    
     @Test public void
     purchasingSeveralItemsUsingACreditCard() throws Exception {
         havingRetrieversInStock();
@@ -36,12 +37,12 @@ public class PurchaseFeature {
         application.buyItem("Golden Retriever", "22222222");
         application.showsTotalToPay(totalPrice);
 
-        application.pay("John", "Doe", "jdoe@gmail.com", "Quality Street", "Visa", "4111111111111111", "12/12");
+        application.pay("John", "Doe", "jdoe@gmail.com", "Quality Street", "ZipCode","Visa", "4111111111111111", "12/12");
         application.showsCartIsEmpty();
         application.showsOrderTotal("1248.00");
         application.showsOrderedItems(
                 item("11111111", "Male Adult", "599.00"), item("22222222", "Female Adult", "649.00"));
-        application.showsBillingInformation("John", "Doe", "jdoe@gmail.com", "Quality Street");
+        application.showsBillingInformation("John", "Doe", "jdoe@gmail.com", "Quality Street","ZipCode");
         application.showsCreditCardDetails("Visa", "4111111111111111", "12/12");
     }
 

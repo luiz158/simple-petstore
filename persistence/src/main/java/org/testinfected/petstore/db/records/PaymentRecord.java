@@ -26,8 +26,9 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
     private final Column<String> billingEmail;
     private final Column<String> billingCountry;
     private final Column<String> billingStreet;
+    private final Column<String> billingZipCode;
 
-    public PaymentRecord(Column<Long> id, Column<String> paymentType, Column<String> cardType, Column<String> cardNumber, Column<String> cardExpiryDate, Column<String> billingFirstName, Column<String> billingLastName, Column<String> billingEmail, Column<String> billingCountry, Column<String> billingStreet) {
+    public PaymentRecord(Column<Long> id, Column<String> paymentType, Column<String> cardType, Column<String> cardNumber, Column<String> cardExpiryDate, Column<String> billingFirstName, Column<String> billingLastName, Column<String> billingEmail, Column<String> billingCountry, Column<String> billingStreet,Column<String> billingZipCode) {
         this.id = id;
         this.paymentType = paymentType;
         this.cardType = cardType;
@@ -38,6 +39,7 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
         this.billingEmail = billingEmail;
         this.billingCountry = billingCountry;
         this.billingStreet = billingStreet;
+        this.billingZipCode = billingZipCode;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class PaymentRecord extends AbstractRecord<PaymentMethod> {
 
         CreditCardDetails creditCard = new CreditCardDetails(
                 CreditCardType.valueOf(cardType.get(rs)), cardNumber.get(rs), cardExpiryDate.get(rs),
-                new Address(billingFirstName.get(rs), billingLastName.get(rs), billingEmail.get(rs), billingCountry.get(rs), billingStreet.get(rs))
+                new Address(billingFirstName.get(rs), billingLastName.get(rs), billingEmail.get(rs), billingCountry.get(rs), billingStreet.get(rs),billingZipCode.get(rs))
         );
         idOf(creditCard).set(id.get(rs));
         return creditCard;
