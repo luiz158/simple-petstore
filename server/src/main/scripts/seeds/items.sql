@@ -22,5 +22,5 @@ INSERT INTO `items` (`id`, `number`, `product_id`, `description`, `price`) VALUE
 (13, '98765434', 23, '3 months Husky', 69.99),
 (14, '98765435', 24, 'Fournisseur de bonbons', 10),
 (15, '98765436', 24, 'Developpeur fou', 11),
-(16, '98765437', 25, 'Prix a débattre', 1),
+(16, '98765437', 25, 'Prix a debattre', 1),
 (17, '98765438', 26, 'Travail en decale', 99);
